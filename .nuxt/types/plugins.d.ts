@@ -17,13 +17,13 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/.pnpm/@pinia+nuxt@0.5.5_magicast@0.3.5_rollup@4.24.0_typescript@5.6.3_vue@3.5.12_typescript@5.6.3__webpack-sources@3.2.3/node_modules/@pinia/nuxt/dist/runtime/plugin.vue3.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__ysoah3fqaksetjhk3bs53psi7m/node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__ysoah3fqaksetjhk3bs53psi7m/node_modules/nuxt/dist/pages/runtime/plugins/check-if-page-unused.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@1.5.2_rollup@4.24.0_vite@5.4.8_@types+node@22.7.5_sass@1.79.5_terser@5.34.1__v_bfwvifprce6qwaoogrck5ckjte/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.server.js").default> &
-  InjectionType<typeof import("../../node_modules/.pnpm/@nuxt+devtools@1.5.2_rollup@4.24.0_vite@5.4.8_@types+node@22.7.5_sass@1.79.5_terser@5.34.1__v_bfwvifprce6qwaoogrck5ckjte/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js").default> &
+  InjectionType<typeof import("../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/@nuxt+devtools@1.5.2_rollup@4.24.0_vite@5.4.8_@types+node@22.7.4_sass@1.79.4_terser@5.34.1__vue@3.5.11_typescript@5.6.2_/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.server.js").default> &
+  InjectionType<typeof import("../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/@nuxt+devtools@1.5.2_rollup@4.24.0_vite@5.4.8_@types+node@22.7.4_sass@1.79.4_terser@5.34.1__vue@3.5.11_typescript@5.6.2_/node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__ysoah3fqaksetjhk3bs53psi7m/node_modules/nuxt/dist/app/plugins/dev-server-logs.js").default> &
   InjectionType<typeof import("../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__ysoah3fqaksetjhk3bs53psi7m/node_modules/nuxt/dist/app/plugins/check-if-layout-used.js").default> &
-  InjectionType<typeof import("../../../veloris-dashboard/plugins/a-firebase-instance").default> &
-  InjectionType<typeof import("../../../veloris-dashboard/plugins/google-analytics.client").default> &
-  InjectionType<typeof import("../../../veloris-dashboard/plugins/pinia-init").default> &
+  InjectionType<typeof import("../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/plugins/a-firebase-instance").default> &
+  InjectionType<typeof import("../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/plugins/google-analytics.client").default> &
+  InjectionType<typeof import("../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/plugins/pinia-init").default> &
   InjectionType<typeof import("../../plugins/config").default>
 
 declare module '#app' {

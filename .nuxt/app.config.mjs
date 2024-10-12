@@ -13,8 +13,7 @@ if (import.meta.hot) {
   })
 }
 
-import cfg0 from "/app/veloris-site-template/node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config.ts"
-import cfg1 from "/app/veloris-dashboard/app.config.ts"
-import cfg2 from "/app/veloris-dashboard/node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config.ts"
+import cfg0 from "/home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/app.config.ts"
+import cfg1 from "/home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config.ts"
 
-export default /*@__PURE__*/ defuFn(cfg0, cfg1, cfg2, inlineConfig)
+export default /*@__PURE__*/ defuFn(cfg0, cfg1, inlineConfig)

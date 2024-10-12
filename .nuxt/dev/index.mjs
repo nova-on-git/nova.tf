@@ -3,40 +3,40 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, readRawBody, getResponseStatusText } from 'file:///app/veloris-site-template/node_modules/.pnpm/h3@1.13.0/node_modules/h3/dist/index.mjs';
-import { BetaAnalyticsDataClient } from 'file:///app/veloris-dashboard/node_modules/.pnpm/@google-analytics+data@4.8.0/node_modules/@google-analytics/data/build/src/index.js';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, readRawBody, getResponseStatusText } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/h3@1.13.0/node_modules/h3/dist/index.mjs';
+import { BetaAnalyticsDataClient } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/@google-analytics+data@4.8.0/node_modules/@google-analytics/data/build/src/index.js';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, getDoc, where, setDoc } from 'file:///app/veloris-dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
-import axios from 'file:///app/veloris-dashboard/node_modules/.pnpm/axios@1.7.7/node_modules/axios/index.js';
+import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, getDoc, where, setDoc } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
+import axios from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/axios@1.7.7/node_modules/axios/index.js';
 import { promises } from 'fs';
-import Stripe from 'file:///app/veloris-dashboard/node_modules/.pnpm/stripe@16.12.0/node_modules/stripe/esm/stripe.esm.node.js';
-import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///app/veloris-site-template/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file:///app/veloris-site-template/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
-import destr from 'file:///app/veloris-site-template/node_modules/.pnpm/destr@2.0.3/node_modules/destr/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///app/veloris-site-template/node_modules/.pnpm/ufo@1.5.4/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///app/veloris-site-template/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/server-renderer/index.mjs';
-import { propsToString, renderSSRHead } from 'file:///app/veloris-site-template/node_modules/.pnpm/@unhead+ssr@1.11.7/node_modules/@unhead/ssr/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///app/veloris-site-template/node_modules/.pnpm/ofetch@1.4.1/node_modules/ofetch/dist/node.mjs';
-import { createCall, createFetch } from 'file:///app/veloris-site-template/node_modules/.pnpm/unenv@1.10.0/node_modules/unenv/runtime/fetch/index.mjs';
-import { createHooks } from 'file:///app/veloris-site-template/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
-import { klona } from 'file:///app/veloris-site-template/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file:///app/veloris-site-template/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
-import defu, { defuFn } from 'file:///app/veloris-site-template/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
-import { hash } from 'file:///app/veloris-site-template/node_modules/.pnpm/ohash@1.1.4/node_modules/ohash/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///app/veloris-site-template/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///app/veloris-site-template/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file:///app/veloris-site-template/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
+import Stripe from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/stripe@16.12.0/node_modules/stripe/esm/stripe.esm.node.js';
+import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { stringify, uneval } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
+import destr from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/destr@2.0.3/node_modules/destr/dist/index.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/ufo@1.5.4/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/server-renderer/index.mjs';
+import { propsToString, renderSSRHead } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/@unhead+ssr@1.11.7/node_modules/@unhead/ssr/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/ofetch@1.4.1/node_modules/ofetch/dist/node.mjs';
+import { createCall, createFetch } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unenv@1.10.0/node_modules/unenv/runtime/fetch/index.mjs';
+import { createHooks } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
+import { klona } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import defu, { defuFn } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
+import { hash } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/ohash@1.1.4/node_modules/ohash/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { consola } from 'file:///app/veloris-site-template/node_modules/.pnpm/consola@3.2.3/node_modules/consola/dist/index.mjs';
-import { getContext } from 'file:///app/veloris-site-template/node_modules/.pnpm/unctx@2.3.1_webpack-sources@3.2.3/node_modules/unctx/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///app/veloris-site-template/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
-import { isVNode, version, unref } from 'file:///app/veloris-site-template/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/index.mjs';
-import { initializeApp } from 'file:///app/veloris-dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/app/dist/index.mjs';
-import { getAuth } from 'file:///app/veloris-dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/auth/dist/index.mjs';
-import { getStorage } from 'file:///app/veloris-dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/storage/dist/index.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///app/veloris-site-template/node_modules/.pnpm/unhead@1.11.7/node_modules/unhead/dist/index.mjs';
-import { defineHeadPlugin } from 'file:///app/veloris-site-template/node_modules/.pnpm/@unhead+shared@1.11.7/node_modules/@unhead/shared/dist/index.mjs';
+import { consola } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/consola@3.2.3/node_modules/consola/dist/index.mjs';
+import { getContext } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unctx@2.3.1_webpack-sources@3.2.3/node_modules/unctx/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
+import { isVNode, version, unref } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/index.mjs';
+import { initializeApp } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/app/dist/index.mjs';
+import { getAuth } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/auth/dist/index.mjs';
+import { getStorage } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/storage/dist/index.mjs';
+import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unhead@1.11.7/node_modules/unhead/dist/index.mjs';
+import { defineHeadPlugin } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/@unhead+shared@1.11.7/node_modules/@unhead/shared/dist/index.mjs';
 
 const r=Object.create(null),E=e=>globalThis.process?.env||globalThis._importMeta_.env||globalThis.Deno?.env.toObject()||globalThis.__env__||(e?r:globalThis),s=new Proxy(r,{get(e,o){return E()[o]??r[o]},has(e,o){const i=E();return o in i||o in r},set(e,o,i){const g=E(!0);return g[o]=i,!0},deleteProperty(e,o){if(!o)return !1;const i=E(!0);return delete i[o],!0},ownKeys(){const e=E(!0);return Object.keys(e)}}),t=typeof process<"u"&&process.env&&"development"||"",p=[["APPVEYOR"],["AWS_AMPLIFY","AWS_APP_ID",{ci:!0}],["AZURE_PIPELINES","SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"],["AZURE_STATIC","INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN"],["APPCIRCLE","AC_APPCIRCLE"],["BAMBOO","bamboo_planKey"],["BITBUCKET","BITBUCKET_COMMIT"],["BITRISE","BITRISE_IO"],["BUDDY","BUDDY_WORKSPACE_ID"],["BUILDKITE"],["CIRCLE","CIRCLECI"],["CIRRUS","CIRRUS_CI"],["CLOUDFLARE_PAGES","CF_PAGES",{ci:!0}],["CODEBUILD","CODEBUILD_BUILD_ARN"],["CODEFRESH","CF_BUILD_ID"],["DRONE"],["DRONE","DRONE_BUILD_EVENT"],["DSARI"],["GITHUB_ACTIONS"],["GITLAB","GITLAB_CI"],["GITLAB","CI_MERGE_REQUEST_ID"],["GOCD","GO_PIPELINE_LABEL"],["LAYERCI"],["HUDSON","HUDSON_URL"],["JENKINS","JENKINS_URL"],["MAGNUM"],["NETLIFY"],["NETLIFY","NETLIFY_LOCAL",{ci:!1}],["NEVERCODE"],["RENDER"],["SAIL","SAILCI"],["SEMAPHORE"],["SCREWDRIVER"],["SHIPPABLE"],["SOLANO","TDDIUM"],["STRIDER"],["TEAMCITY","TEAMCITY_VERSION"],["TRAVIS"],["VERCEL","NOW_BUILDER"],["VERCEL","VERCEL",{ci:!1}],["VERCEL","VERCEL_ENV",{ci:!1}],["APPCENTER","APPCENTER_BUILD_ID"],["CODESANDBOX","CODESANDBOX_SSE",{ci:!1}],["STACKBLITZ"],["STORMKIT"],["CLEAVR"],["ZEABUR"],["CODESPHERE","CODESPHERE_APP_ID",{ci:!0}],["RAILWAY","RAILWAY_PROJECT_ID"],["RAILWAY","RAILWAY_SERVICE_ID"]];function B(){if(globalThis.process?.env)for(const e of p){const o=e[1]||e[0];if(globalThis.process?.env[o])return {name:e[0].toLowerCase(),...e[2]}}return globalThis.process?.env?.SHELL==="/bin/jsh"&&globalThis.process?.versions?.webcontainer?{name:"stackblitz",ci:!1}:{name:"",ci:!1}}const l=B(),d=l.name;function n(e){return e?e!=="false":!1}const I=globalThis.process?.platform||"",T=n(s.CI)||l.ci!==!1,R=n(globalThis.process?.stdout&&globalThis.process?.stdout.isTTY);n(s.DEBUG);const C=t==="test"||n(s.TEST);n(s.MINIMAL)||T||C||!R;const a=/^win/i.test(I);!n(s.NO_COLOR)&&(n(s.FORCE_COLOR)||(R||a)&&s.TERM!=="dumb"||T);const _=(globalThis.process?.versions?.node||"").replace(/^v/,"")||null;Number(_?.split(".")[0])||null;const W=globalThis.process||Object.create(null),c={versions:{}};new Proxy(W,{get(e,o){if(o==="env")return s;if(o in e)return e[o];if(o in c)return c[o]}});const A=globalThis.process?.release?.name==="node",L=!!globalThis.Bun||!!globalThis.process?.versions?.bun,D=!!globalThis.Deno,O=!!globalThis.fastly,S=!!globalThis.Netlify,N=!!globalThis.EdgeRuntime,u=globalThis.navigator?.userAgent==="Cloudflare-Workers",b=!!globalThis.__lagon__,F=[[S,"netlify"],[N,"edge-light"],[u,"workerd"],[O,"fastly"],[D,"deno"],[L,"bun"],[A,"node"],[b,"lagon"]];function G(){const e=F.find(o=>o[0]);if(e)return {name:e[1]}}const P=G();P?.name||"";
 
@@ -92,17 +92,11 @@ const appConfig1 = defineAppConfig({
   }
 });
 
-const appConfig2 = defineAppConfig({
-  myLayer: {
-    name: "Hello from Nuxt layer"
-  }
-});
-
 const inlineAppConfig = {
   "nuxt": {}
 };
 
-const appConfig = defuFn(appConfig0, appConfig1, appConfig2, inlineAppConfig);
+const appConfig = defuFn(appConfig0, appConfig1, inlineAppConfig);
 
 const _inlineRuntimeConfig = {
   "app": {
@@ -195,7 +189,7 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
   }
 });
 
-const serverAssets = [{"baseName":"server","dir":"/app/veloris-site-template/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/home/cody/git/velorisdesigns.com/server/assets"}];
 
 const assets = createStorage();
 
@@ -207,11 +201,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/app/veloris-site-template","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/app/veloris-site-template/server","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/app/veloris-site-template/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/app/veloris-site-template/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/app/veloris-site-template/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/cody/git/velorisdesigns.com","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/cody/git/velorisdesigns.com/server","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/cody/git/velorisdesigns.com/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/cody/git/velorisdesigns.com/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/home/cody/git/velorisdesigns.com/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -661,13 +655,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _CukdlZ4DTG = (function(nitro) {
+const _54aHEYr1KN = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "/app/veloris-site-template";
+const rootDir = "/home/cody/git/velorisdesigns.com";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -686,7 +680,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _jXbjvqFG5y = (nitroApp) => {
+const _3c1WW20k7E = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -827,7 +821,7 @@ function defineRenderHandler(handler) {
   });
 }
 
-const _Nh7snEqwwx = defineNitroPlugin(async (nitroApp) => {
+const _j0GahxC5cf = defineNitroPlugin(async (nitroApp) => {
   const config = useRuntimeConfig();
   const firebaseConfig = {
     apiKey: config.public.FIREBASE_API_KEY,
@@ -872,9 +866,9 @@ const _Nh7snEqwwx = defineNitroPlugin(async (nitroApp) => {
 });
 
 const plugins = [
-  _CukdlZ4DTG,
-_jXbjvqFG5y,
-_Nh7snEqwwx
+  _54aHEYr1KN,
+_3c1WW20k7E,
+_j0GahxC5cf
 ];
 
 const errorHandler = (async function errorhandler(error, event) {
@@ -937,96 +931,96 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const _lazy_9699S2 = () => Promise.resolve().then(function () { return analytics_post$1; });
-const _lazy_ebDSNW = () => Promise.resolve().then(function () { return _id__delete$3; });
-const _lazy_dqPerJ = () => Promise.resolve().then(function () { return index_get$9; });
-const _lazy_qgxU6I = () => Promise.resolve().then(function () { return index_post$d; });
-const _lazy_uXKscO = () => Promise.resolve().then(function () { return status_put$3; });
-const _lazy_FXZDvl = () => Promise.resolve().then(function () { return documents_post$1; });
-const _lazy_MX9tgk = () => Promise.resolve().then(function () { return _id__get$3; });
-const _lazy_zAfu2Z = () => Promise.resolve().then(function () { return message_post$1; });
-const _lazy_XbeBYr = () => Promise.resolve().then(function () { return _id__get$1; });
-const _lazy_8A0GrX = () => Promise.resolve().then(function () { return index_post$b; });
-const _lazy_ubyVtG = () => Promise.resolve().then(function () { return index_get$7; });
-const _lazy_3bwXA8 = () => Promise.resolve().then(function () { return index_post$9; });
-const _lazy_FId4Pf = () => Promise.resolve().then(function () { return read_put$1; });
-const _lazy_3243wT = () => Promise.resolve().then(function () { return _orderId__delete$1; });
-const _lazy_nAAo0w = () => Promise.resolve().then(function () { return index_post$7; });
-const _lazy_XkqNuA = () => Promise.resolve().then(function () { return resolveOrder_put$1; });
-const _lazy_9m9iPH = () => Promise.resolve().then(function () { return index_get$5; });
-const _lazy_O0yTLm = () => import('file:///app/veloris-dashboard/server/api/orders/index.post.js');
-const _lazy_M7dyX6 = () => import('file:///app/veloris-dashboard/server/api/orders/index.put.js');
-const _lazy_ctWHCn = () => Promise.resolve().then(function () { return _id__delete$1; });
-const _lazy_2P4XJC = () => Promise.resolve().then(function () { return ids_get$1; });
-const _lazy_7hzVLK = () => Promise.resolve().then(function () { return index_get$3; });
-const _lazy_oaDgMd = () => Promise.resolve().then(function () { return index_post$5; });
-const _lazy_edtbk1 = () => Promise.resolve().then(function () { return index_put$1; });
-const _lazy_DIHIEG = () => Promise.resolve().then(function () { return status_put$1; });
-const _lazy_bnI2gm = () => Promise.resolve().then(function () { return realtimeAnalytics_post$1; });
-const _lazy_0hIZkg = () => import('file:///app/veloris-dashboard/server/api/store/%5BitemId%5D.delete.js');
-const _lazy_vKm6Gi = () => Promise.resolve().then(function () { return _category__get$1; });
-const _lazy_VJW8AC = () => import('file:///app/veloris-dashboard/server/api/store/categories/%5Bcategory%5D.post.js');
-const _lazy_rtQuyL = () => import('file:///app/veloris-dashboard/server/api/store/categories/%5Bcategory%5D/products/%5Bid%5D.get.js');
-const _lazy_YoEJIP = () => import('file:///app/veloris-dashboard/server/api/store/categories/%5Bcategory%5D/products/index.post.js');
-const _lazy_bT22l3 = () => import('file:///app/veloris-dashboard/server/api/store/categories/%5Bcategory%5D/products/index.put.js');
-const _lazy_dYmc6O = () => import('file:///app/veloris-dashboard/server/api/store/categories/%5Bcategory%5D/products/update/%5Bid%5D.put.js');
-const _lazy_OzCqjO = () => import('file:///app/veloris-dashboard/server/api/store/index.get.js');
-const _lazy_O9q0tx = () => import('file:///app/veloris-dashboard/server/api/store/index.put.js');
-const _lazy_qYveT0 = () => Promise.resolve().then(function () { return index_post$3; });
-const _lazy_XRisHe = () => Promise.resolve().then(function () { return webhook_post$1; });
-const _lazy_2R5cIk = () => Promise.resolve().then(function () { return access_get$1; });
-const _lazy_06m8qs = () => Promise.resolve().then(function () { return index_delete$1; });
-const _lazy_vAOxsr = () => Promise.resolve().then(function () { return index_get$1; });
-const _lazy_HlBT9C = () => Promise.resolve().then(function () { return index_post$1; });
-const _lazy_9Q9z67 = () => Promise.resolve().then(function () { return role_put$1; });
-const _lazy_hvqOnV = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_jlHlWX = () => Promise.resolve().then(function () { return analytics_post$1; });
+const _lazy_NgIfiD = () => Promise.resolve().then(function () { return _id__delete$3; });
+const _lazy_VgmluP = () => Promise.resolve().then(function () { return index_get$9; });
+const _lazy_pft4JA = () => Promise.resolve().then(function () { return index_post$d; });
+const _lazy_mcFkvk = () => Promise.resolve().then(function () { return status_put$3; });
+const _lazy_EyHUv6 = () => Promise.resolve().then(function () { return documents_post$1; });
+const _lazy_uV84uz = () => Promise.resolve().then(function () { return _id__get$3; });
+const _lazy_lm5NjB = () => Promise.resolve().then(function () { return message_post$1; });
+const _lazy_uVoecV = () => Promise.resolve().then(function () { return _id__get$1; });
+const _lazy_oNSmG1 = () => Promise.resolve().then(function () { return index_post$b; });
+const _lazy_jR2hka = () => Promise.resolve().then(function () { return index_get$7; });
+const _lazy_cUgZir = () => Promise.resolve().then(function () { return index_post$9; });
+const _lazy_5VcWhK = () => Promise.resolve().then(function () { return read_put$1; });
+const _lazy_AxtXjb = () => Promise.resolve().then(function () { return _orderId__delete$1; });
+const _lazy_1MDYyP = () => Promise.resolve().then(function () { return index_post$7; });
+const _lazy_7Uz1GG = () => Promise.resolve().then(function () { return resolveOrder_put$1; });
+const _lazy_J5CprQ = () => Promise.resolve().then(function () { return index_get$5; });
+const _lazy_rkNwkt = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/orders/index.post.js');
+const _lazy_XbDSwR = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/orders/index.put.js');
+const _lazy_DkVgvv = () => Promise.resolve().then(function () { return _id__delete$1; });
+const _lazy_0hTVFO = () => Promise.resolve().then(function () { return ids_get$1; });
+const _lazy_rSu1bW = () => Promise.resolve().then(function () { return index_get$3; });
+const _lazy_dzsKtZ = () => Promise.resolve().then(function () { return index_post$5; });
+const _lazy_gXYWfO = () => Promise.resolve().then(function () { return index_put$1; });
+const _lazy_ZNLAMI = () => Promise.resolve().then(function () { return status_put$1; });
+const _lazy_UdZVEQ = () => Promise.resolve().then(function () { return realtimeAnalytics_post$1; });
+const _lazy_MqM4Y7 = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/%5BitemId%5D.delete.js');
+const _lazy_lY5ar5 = () => Promise.resolve().then(function () { return _category__get$1; });
+const _lazy_FOxMjO = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D.post.js');
+const _lazy_NTL2ea = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/%5Bid%5D.get.js');
+const _lazy_Cxx8rx = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/index.post.js');
+const _lazy_K48ssy = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/index.put.js');
+const _lazy_D06CRl = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/update/%5Bid%5D.put.js');
+const _lazy_BHZFHX = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/index.get.js');
+const _lazy_UgJOjM = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/index.put.js');
+const _lazy_jFvTqv = () => Promise.resolve().then(function () { return index_post$3; });
+const _lazy_hQimFL = () => Promise.resolve().then(function () { return webhook_post$1; });
+const _lazy_63LsdB = () => Promise.resolve().then(function () { return access_get$1; });
+const _lazy_OkR7J6 = () => Promise.resolve().then(function () { return index_delete$1; });
+const _lazy_9MfuL7 = () => Promise.resolve().then(function () { return index_get$1; });
+const _lazy_jmMb3a = () => Promise.resolve().then(function () { return index_post$1; });
+const _lazy_kwCJMo = () => Promise.resolve().then(function () { return role_put$1; });
+const _lazy_rrjIyM = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/api/analytics', handler: _lazy_9699S2, lazy: true, middleware: false, method: "post" },
-  { route: '/api/blogs/:id', handler: _lazy_ebDSNW, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/blogs', handler: _lazy_dqPerJ, lazy: true, middleware: false, method: "get" },
-  { route: '/api/blogs', handler: _lazy_qgxU6I, lazy: true, middleware: false, method: "post" },
-  { route: '/api/blogs/status', handler: _lazy_uXKscO, lazy: true, middleware: false, method: "put" },
-  { route: '/api/chatrooms/documents', handler: _lazy_FXZDvl, lazy: true, middleware: false, method: "post" },
-  { route: '/api/chatrooms/documents/:id', handler: _lazy_MX9tgk, lazy: true, middleware: false, method: "get" },
-  { route: '/api/chatrooms/message', handler: _lazy_zAfu2Z, lazy: true, middleware: false, method: "post" },
-  { route: '/api/chatrooms/messages/:id', handler: _lazy_XbeBYr, lazy: true, middleware: false, method: "get" },
-  { route: '/api/galleries', handler: _lazy_8A0GrX, lazy: true, middleware: false, method: "post" },
-  { route: '/api/notifications', handler: _lazy_ubyVtG, lazy: true, middleware: false, method: "get" },
-  { route: '/api/notifications', handler: _lazy_3bwXA8, lazy: true, middleware: false, method: "post" },
-  { route: '/api/notifications/read', handler: _lazy_FId4Pf, lazy: true, middleware: false, method: "put" },
-  { route: '/api/orders/incomplete/:orderId', handler: _lazy_3243wT, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/orders/incomplete', handler: _lazy_nAAo0w, lazy: true, middleware: false, method: "post" },
-  { route: '/api/orders/incomplete/resolve-order', handler: _lazy_XkqNuA, lazy: true, middleware: false, method: "put" },
-  { route: '/api/orders', handler: _lazy_9m9iPH, lazy: true, middleware: false, method: "get" },
-  { route: '/api/orders', handler: _lazy_O0yTLm, lazy: true, middleware: false, method: "post" },
-  { route: '/api/orders', handler: _lazy_M7dyX6, lazy: true, middleware: false, method: "put" },
-  { route: '/api/projects/:id', handler: _lazy_ctWHCn, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/projects/ids', handler: _lazy_2P4XJC, lazy: true, middleware: false, method: "get" },
-  { route: '/api/projects', handler: _lazy_7hzVLK, lazy: true, middleware: false, method: "get" },
-  { route: '/api/projects', handler: _lazy_oaDgMd, lazy: true, middleware: false, method: "post" },
-  { route: '/api/projects', handler: _lazy_edtbk1, lazy: true, middleware: false, method: "put" },
-  { route: '/api/projects/status', handler: _lazy_DIHIEG, lazy: true, middleware: false, method: "put" },
-  { route: '/api/realtimeAnalytics', handler: _lazy_bnI2gm, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/:itemId', handler: _lazy_0hIZkg, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/store/categories/:category', handler: _lazy_vKm6Gi, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store/categories/:category', handler: _lazy_VJW8AC, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/categories/:category/products/:id', handler: _lazy_rtQuyL, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store/categories/:category/products', handler: _lazy_YoEJIP, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/categories/:category/products', handler: _lazy_bT22l3, lazy: true, middleware: false, method: "put" },
-  { route: '/api/store/categories/:category/products/update/:id', handler: _lazy_dYmc6O, lazy: true, middleware: false, method: "put" },
-  { route: '/api/store', handler: _lazy_OzCqjO, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store', handler: _lazy_O9q0tx, lazy: true, middleware: false, method: "put" },
-  { route: '/api/stripe', handler: _lazy_qYveT0, lazy: true, middleware: false, method: "post" },
-  { route: '/api/stripe/webhook', handler: _lazy_XRisHe, lazy: true, middleware: false, method: "post" },
-  { route: '/api/users/access', handler: _lazy_2R5cIk, lazy: true, middleware: false, method: "get" },
-  { route: '/api/users', handler: _lazy_06m8qs, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/users', handler: _lazy_vAOxsr, lazy: true, middleware: false, method: "get" },
-  { route: '/api/users', handler: _lazy_HlBT9C, lazy: true, middleware: false, method: "post" },
-  { route: '/api/users/role', handler: _lazy_9Q9z67, lazy: true, middleware: false, method: "put" },
-  { route: '/__nuxt_error', handler: _lazy_hvqOnV, lazy: true, middleware: false, method: undefined },
-  { route: '/_fonts/**', handler: _lazy_hvqOnV, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_hvqOnV, lazy: true, middleware: false, method: undefined }
+  { route: '/api/analytics', handler: _lazy_jlHlWX, lazy: true, middleware: false, method: "post" },
+  { route: '/api/blogs/:id', handler: _lazy_NgIfiD, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/blogs', handler: _lazy_VgmluP, lazy: true, middleware: false, method: "get" },
+  { route: '/api/blogs', handler: _lazy_pft4JA, lazy: true, middleware: false, method: "post" },
+  { route: '/api/blogs/status', handler: _lazy_mcFkvk, lazy: true, middleware: false, method: "put" },
+  { route: '/api/chatrooms/documents', handler: _lazy_EyHUv6, lazy: true, middleware: false, method: "post" },
+  { route: '/api/chatrooms/documents/:id', handler: _lazy_uV84uz, lazy: true, middleware: false, method: "get" },
+  { route: '/api/chatrooms/message', handler: _lazy_lm5NjB, lazy: true, middleware: false, method: "post" },
+  { route: '/api/chatrooms/messages/:id', handler: _lazy_uVoecV, lazy: true, middleware: false, method: "get" },
+  { route: '/api/galleries', handler: _lazy_oNSmG1, lazy: true, middleware: false, method: "post" },
+  { route: '/api/notifications', handler: _lazy_jR2hka, lazy: true, middleware: false, method: "get" },
+  { route: '/api/notifications', handler: _lazy_cUgZir, lazy: true, middleware: false, method: "post" },
+  { route: '/api/notifications/read', handler: _lazy_5VcWhK, lazy: true, middleware: false, method: "put" },
+  { route: '/api/orders/incomplete/:orderId', handler: _lazy_AxtXjb, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/orders/incomplete', handler: _lazy_1MDYyP, lazy: true, middleware: false, method: "post" },
+  { route: '/api/orders/incomplete/resolve-order', handler: _lazy_7Uz1GG, lazy: true, middleware: false, method: "put" },
+  { route: '/api/orders', handler: _lazy_J5CprQ, lazy: true, middleware: false, method: "get" },
+  { route: '/api/orders', handler: _lazy_rkNwkt, lazy: true, middleware: false, method: "post" },
+  { route: '/api/orders', handler: _lazy_XbDSwR, lazy: true, middleware: false, method: "put" },
+  { route: '/api/projects/:id', handler: _lazy_DkVgvv, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/projects/ids', handler: _lazy_0hTVFO, lazy: true, middleware: false, method: "get" },
+  { route: '/api/projects', handler: _lazy_rSu1bW, lazy: true, middleware: false, method: "get" },
+  { route: '/api/projects', handler: _lazy_dzsKtZ, lazy: true, middleware: false, method: "post" },
+  { route: '/api/projects', handler: _lazy_gXYWfO, lazy: true, middleware: false, method: "put" },
+  { route: '/api/projects/status', handler: _lazy_ZNLAMI, lazy: true, middleware: false, method: "put" },
+  { route: '/api/realtimeAnalytics', handler: _lazy_UdZVEQ, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/:itemId', handler: _lazy_MqM4Y7, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/store/categories/:category', handler: _lazy_lY5ar5, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store/categories/:category', handler: _lazy_FOxMjO, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/categories/:category/products/:id', handler: _lazy_NTL2ea, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store/categories/:category/products', handler: _lazy_Cxx8rx, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/categories/:category/products', handler: _lazy_K48ssy, lazy: true, middleware: false, method: "put" },
+  { route: '/api/store/categories/:category/products/update/:id', handler: _lazy_D06CRl, lazy: true, middleware: false, method: "put" },
+  { route: '/api/store', handler: _lazy_BHZFHX, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store', handler: _lazy_UgJOjM, lazy: true, middleware: false, method: "put" },
+  { route: '/api/stripe', handler: _lazy_jFvTqv, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/webhook', handler: _lazy_hQimFL, lazy: true, middleware: false, method: "post" },
+  { route: '/api/users/access', handler: _lazy_63LsdB, lazy: true, middleware: false, method: "get" },
+  { route: '/api/users', handler: _lazy_OkR7J6, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/users', handler: _lazy_9MfuL7, lazy: true, middleware: false, method: "get" },
+  { route: '/api/users', handler: _lazy_jmMb3a, lazy: true, middleware: false, method: "post" },
+  { route: '/api/users/role', handler: _lazy_kwCJMo, lazy: true, middleware: false, method: "put" },
+  { route: '/__nuxt_error', handler: _lazy_rrjIyM, lazy: true, middleware: false, method: undefined },
+  { route: '/_fonts/**', handler: _lazy_rrjIyM, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_rrjIyM, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -2173,8 +2167,8 @@ function publicAssetsURL(...path) {
 
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
-const getClientManifest = () => import('file:///app/veloris-site-template/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
-const getServerEntry = () => import('file:///app/veloris-site-template/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file:///home/cody/git/velorisdesigns.com/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file:///home/cody/git/velorisdesigns.com/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
 const getSSRStyles = lazyCachedFunction(() => Promise.resolve().then(function () { return styles$1; }).then((r) => r.default || r));
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();

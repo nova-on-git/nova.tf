@@ -51,7 +51,7 @@
         "../node_modules/.pnpm/@unhead+vue@1.11.7_vue@3.5.12_typescript@5.6.3_/node_modules/@unhead/vue"
       ],
       "@nuxt/devtools": [
-        "../node_modules/.pnpm/@nuxt+devtools@1.5.2_rollup@4.24.0_vite@5.4.8_@types+node@22.7.5_sass@1.79.5_terser@5.34.1__v_bfwvifprce6qwaoogrck5ckjte/node_modules/@nuxt/devtools"
+        "../node_modules/.pnpm/@nuxt+devtools@1.6.0_rollup@4.24.0_vite@5.4.8_@types+node@22.7.5_sass@1.79.5_terser@5.34.1__v_ijbqieknaud5bty4qfmumvgacq/node_modules/@nuxt/devtools"
       ],
       "@vue/runtime-core": [
         "../node_modules/.pnpm/@vue+runtime-core@3.5.12/node_modules/@vue/runtime-core"
@@ -107,7 +107,7 @@
     "../node_modules/.pnpm/@nuxt+fonts@0.9.2_ioredis@5.4.1_magicast@0.3.5_rollup@4.24.0_vite@5.4.8_@types+node@22.7.5_sa_eldhayb4xwyje4uzaoptil2qpi/node_modules/@nuxt/fonts/runtime/server",
     "../node_modules/.pnpm/@pinia+nuxt@0.5.5_magicast@0.3.5_rollup@4.24.0_typescript@5.6.3_vue@3.5.12_typescript@5.6.3__webpack-sources@3.2.3/node_modules/@pinia/nuxt/runtime/server",
     "../node_modules/.pnpm/nuxt-build-cache@0.1.1_magicast@0.3.5_rollup@4.24.0_webpack-sources@3.2.3/node_modules/nuxt-build-cache/runtime/server",
-    "../node_modules/.pnpm/@nuxt+devtools@1.5.2_rollup@4.24.0_vite@5.4.8_@types+node@22.7.5_sass@1.79.5_terser@5.34.1__v_bfwvifprce6qwaoogrck5ckjte/node_modules/@nuxt/devtools/runtime/server",
+    "../node_modules/.pnpm/@nuxt+devtools@1.6.0_rollup@4.24.0_vite@5.4.8_@types+node@22.7.5_sass@1.79.5_terser@5.34.1__v_ijbqieknaud5bty4qfmumvgacq/node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/.pnpm/@nuxt+telemetry@2.6.0_magicast@0.3.5_rollup@4.24.0_webpack-sources@3.2.3/node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
     "../**/*",
@@ -116,9 +116,8 @@
   "exclude": [
     "../node_modules",
     "../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__ysoah3fqaksetjhk3bs53psi7m/node_modules/nuxt/node_modules",
+    "../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules",
     "../node_modules/.c12/github_Veloris_Designs_aph2YalU4I/node_modules",
-    "../../veloris-dashboard/node_modules",
-    "../../veloris-dashboard/node_modules/.c12/github_Veloris_Designs_aph2YalU4I/node_modules",
     "../dist"
   ]
 }
