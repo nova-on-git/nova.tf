@@ -19,6 +19,9 @@ declare module 'nitropack' {
     '/api/chatrooms/documents': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../../veloris-dashboard/server/api/chatrooms/documents.post').default>>>>
     }
+    '/api/chatrooms/documents/:id': {
+      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../../veloris-dashboard/server/api/chatrooms/documents/[id].get').default>>>>
+    }
     '/api/chatrooms/message': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../../veloris-dashboard/server/api/chatrooms/message.post').default>>>>
     }
@@ -105,7 +108,7 @@ declare module 'nitropack' {
       'put': Simplify<Serialize<Awaited<ReturnType<typeof import('../../../veloris-dashboard/server/api/users/role.put').default>>>>
     }
     '/__nuxt_error': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__zwgm42rhmfq4kj3orzndavyuza/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__ysoah3fqaksetjhk3bs53psi7m/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
     }
   }
 }
