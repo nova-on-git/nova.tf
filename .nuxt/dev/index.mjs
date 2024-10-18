@@ -3,40 +3,41 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, readRawBody, getResponseStatusText } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/h3@1.13.0/node_modules/h3/dist/index.mjs';
-import { BetaAnalyticsDataClient } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/@google-analytics+data@4.8.0/node_modules/@google-analytics/data/build/src/index.js';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, readRawBody, getResponseStatusText } from 'file:///app/site/node_modules/.pnpm/h3@1.13.0/node_modules/h3/dist/index.mjs';
+import { BetaAnalyticsDataClient } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/@google-analytics+data@4.8.0/node_modules/@google-analytics/data/build/src/index.js';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, getDoc, where, setDoc } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
-import axios from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/axios@1.7.7/node_modules/axios/index.js';
+import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, where, getDoc, setDoc, collectionGroup } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
+import axios from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/axios@1.7.7/node_modules/axios/index.js';
 import { promises } from 'fs';
-import Stripe from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/stripe@16.12.0/node_modules/stripe/esm/stripe.esm.node.js';
-import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
-import destr from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/destr@2.0.3/node_modules/destr/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/ufo@1.5.4/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/server-renderer/index.mjs';
-import { propsToString, renderSSRHead } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/@unhead+ssr@1.11.7/node_modules/@unhead/ssr/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/ofetch@1.4.1/node_modules/ofetch/dist/node.mjs';
-import { createCall, createFetch } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unenv@1.10.0/node_modules/unenv/runtime/fetch/index.mjs';
-import { createHooks } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
-import { klona } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
-import defu, { defuFn } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
-import { hash } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/ohash@1.1.4/node_modules/ohash/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
+import nodemailer from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/nodemailer@6.9.15/node_modules/nodemailer/lib/nodemailer.js';
+import { initializeApp } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/app/dist/index.mjs';
+import Stripe from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/stripe@16.12.0/node_modules/stripe/esm/stripe.esm.node.js';
+import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///app/site/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { stringify, uneval } from 'file:///app/site/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
+import destr from 'file:///app/site/node_modules/.pnpm/destr@2.0.3/node_modules/destr/dist/index.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///app/site/node_modules/.pnpm/ufo@1.5.4/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///app/site/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/server-renderer/index.mjs';
+import { propsToString, renderSSRHead } from 'file:///app/site/node_modules/.pnpm/@unhead+ssr@1.11.10/node_modules/@unhead/ssr/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///app/site/node_modules/.pnpm/ofetch@1.4.1/node_modules/ofetch/dist/node.mjs';
+import { createCall, createFetch } from 'file:///app/site/node_modules/.pnpm/unenv@1.10.0/node_modules/unenv/runtime/fetch/index.mjs';
+import { createHooks } from 'file:///app/site/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
+import { klona } from 'file:///app/site/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file:///app/site/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import defu, { defuFn } from 'file:///app/site/node_modules/.pnpm/defu@6.1.4/node_modules/defu/dist/defu.mjs';
+import { hash } from 'file:///app/site/node_modules/.pnpm/ohash@1.1.4/node_modules/ohash/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///app/site/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///app/site/node_modules/.pnpm/unstorage@1.12.0_ioredis@5.4.1/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file:///app/site/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { consola } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/consola@3.2.3/node_modules/consola/dist/index.mjs';
-import { getContext } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unctx@2.3.1_webpack-sources@3.2.3/node_modules/unctx/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
-import { isVNode, version, unref } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/index.mjs';
-import { initializeApp } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/app/dist/index.mjs';
-import { getAuth } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/auth/dist/index.mjs';
-import { getStorage } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/storage/dist/index.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/unhead@1.11.7/node_modules/unhead/dist/index.mjs';
-import { defineHeadPlugin } from 'file:///home/cody/git/velorisdesigns.com/node_modules/.pnpm/@unhead+shared@1.11.7/node_modules/@unhead/shared/dist/index.mjs';
+import { consola } from 'file:///app/site/node_modules/.pnpm/consola@3.2.3/node_modules/consola/dist/index.mjs';
+import { getContext } from 'file:///app/site/node_modules/.pnpm/unctx@2.3.1_webpack-sources@3.2.3/node_modules/unctx/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///app/site/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
+import { isVNode, version, unref } from 'file:///app/site/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/index.mjs';
+import { getAuth } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/auth/dist/index.mjs';
+import { getStorage } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/storage/dist/index.mjs';
+import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///app/site/node_modules/.pnpm/unhead@1.11.10/node_modules/unhead/dist/index.mjs';
+import { defineHeadPlugin } from 'file:///app/site/node_modules/.pnpm/@unhead+shared@1.11.10/node_modules/@unhead/shared/dist/index.mjs';
 
 const r=Object.create(null),E=e=>globalThis.process?.env||globalThis._importMeta_.env||globalThis.Deno?.env.toObject()||globalThis.__env__||(e?r:globalThis),s=new Proxy(r,{get(e,o){return E()[o]??r[o]},has(e,o){const i=E();return o in i||o in r},set(e,o,i){const g=E(!0);return g[o]=i,!0},deleteProperty(e,o){if(!o)return !1;const i=E(!0);return delete i[o],!0},ownKeys(){const e=E(!0);return Object.keys(e)}}),t=typeof process<"u"&&process.env&&"development"||"",p=[["APPVEYOR"],["AWS_AMPLIFY","AWS_APP_ID",{ci:!0}],["AZURE_PIPELINES","SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"],["AZURE_STATIC","INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN"],["APPCIRCLE","AC_APPCIRCLE"],["BAMBOO","bamboo_planKey"],["BITBUCKET","BITBUCKET_COMMIT"],["BITRISE","BITRISE_IO"],["BUDDY","BUDDY_WORKSPACE_ID"],["BUILDKITE"],["CIRCLE","CIRCLECI"],["CIRRUS","CIRRUS_CI"],["CLOUDFLARE_PAGES","CF_PAGES",{ci:!0}],["CODEBUILD","CODEBUILD_BUILD_ARN"],["CODEFRESH","CF_BUILD_ID"],["DRONE"],["DRONE","DRONE_BUILD_EVENT"],["DSARI"],["GITHUB_ACTIONS"],["GITLAB","GITLAB_CI"],["GITLAB","CI_MERGE_REQUEST_ID"],["GOCD","GO_PIPELINE_LABEL"],["LAYERCI"],["HUDSON","HUDSON_URL"],["JENKINS","JENKINS_URL"],["MAGNUM"],["NETLIFY"],["NETLIFY","NETLIFY_LOCAL",{ci:!1}],["NEVERCODE"],["RENDER"],["SAIL","SAILCI"],["SEMAPHORE"],["SCREWDRIVER"],["SHIPPABLE"],["SOLANO","TDDIUM"],["STRIDER"],["TEAMCITY","TEAMCITY_VERSION"],["TRAVIS"],["VERCEL","NOW_BUILDER"],["VERCEL","VERCEL",{ci:!1}],["VERCEL","VERCEL_ENV",{ci:!1}],["APPCENTER","APPCENTER_BUILD_ID"],["CODESANDBOX","CODESANDBOX_SSE",{ci:!1}],["STACKBLITZ"],["STORMKIT"],["CLEAVR"],["ZEABUR"],["CODESPHERE","CODESPHERE_APP_ID",{ci:!0}],["RAILWAY","RAILWAY_PROJECT_ID"],["RAILWAY","RAILWAY_SERVICE_ID"]];function B(){if(globalThis.process?.env)for(const e of p){const o=e[1]||e[0];if(globalThis.process?.env[o])return {name:e[0].toLowerCase(),...e[2]}}return globalThis.process?.env?.SHELL==="/bin/jsh"&&globalThis.process?.versions?.webcontainer?{name:"stackblitz",ci:!1}:{name:"",ci:!1}}const l=B(),d=l.name;function n(e){return e?e!=="false":!1}const I=globalThis.process?.platform||"",T=n(s.CI)||l.ci!==!1,R=n(globalThis.process?.stdout&&globalThis.process?.stdout.isTTY);n(s.DEBUG);const C=t==="test"||n(s.TEST);n(s.MINIMAL)||T||C||!R;const a=/^win/i.test(I);!n(s.NO_COLOR)&&(n(s.FORCE_COLOR)||(R||a)&&s.TERM!=="dumb"||T);const _=(globalThis.process?.versions?.node||"").replace(/^v/,"")||null;Number(_?.split(".")[0])||null;const W=globalThis.process||Object.create(null),c={versions:{}};new Proxy(W,{get(e,o){if(o==="env")return s;if(o in e)return e[o];if(o in c)return c[o]}});const A=globalThis.process?.release?.name==="node",L=!!globalThis.Bun||!!globalThis.process?.versions?.bun,D=!!globalThis.Deno,O=!!globalThis.fastly,S=!!globalThis.Netlify,N=!!globalThis.EdgeRuntime,u=globalThis.navigator?.userAgent==="Cloudflare-Workers",b=!!globalThis.__lagon__,F=[[S,"netlify"],[N,"edge-light"],[u,"workerd"],[O,"fastly"],[D,"deno"],[L,"bun"],[A,"node"],[b,"lagon"]];function G(){const e=F.find(o=>o[0]);if(e)return {name:e[1]}}const P=G();P?.name||"";
 
@@ -189,7 +190,7 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
   }
 });
 
-const serverAssets = [{"baseName":"server","dir":"/home/cody/git/velorisdesigns.com/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/app/site/server/assets"}];
 
 const assets = createStorage();
 
@@ -201,11 +202,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/cody/git/velorisdesigns.com","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/cody/git/velorisdesigns.com/server","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/cody/git/velorisdesigns.com/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/cody/git/velorisdesigns.com/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/home/cody/git/velorisdesigns.com/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/app/site","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/app/site/server","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/app/site/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/app/site/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/app/site/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -586,9 +587,9 @@ function normalizeCookieHeaders(headers) {
   return outgoingHeaders;
 }
 
-const config$2 = useRuntimeConfig();
+const config$5 = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
-  createRouter({ routes: config$2.nitro.routeRules })
+  createRouter({ routes: config$5.nitro.routeRules })
 );
 function createRouteRulesHandler(ctx) {
   return eventHandler((event) => {
@@ -655,13 +656,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _54aHEYr1KN = (function(nitro) {
+const _wzLN2X2Ofa = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "/home/cody/git/velorisdesigns.com";
+const rootDir = "/app/site";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -680,7 +681,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _3c1WW20k7E = (nitroApp) => {
+const _m9TZZt1JSW = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -821,7 +822,7 @@ function defineRenderHandler(handler) {
   });
 }
 
-const _j0GahxC5cf = defineNitroPlugin(async (nitroApp) => {
+const _9OsEmrLA18 = defineNitroPlugin(async (nitroApp) => {
   const config = useRuntimeConfig();
   const firebaseConfig = {
     apiKey: config.public.FIREBASE_API_KEY,
@@ -866,9 +867,9 @@ const _j0GahxC5cf = defineNitroPlugin(async (nitroApp) => {
 });
 
 const plugins = [
-  _54aHEYr1KN,
-_3c1WW20k7E,
-_j0GahxC5cf
+  _wzLN2X2Ofa,
+_m9TZZt1JSW,
+_9OsEmrLA18
 ];
 
 const errorHandler = (async function errorhandler(error, event) {
@@ -931,96 +932,108 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const _lazy_jlHlWX = () => Promise.resolve().then(function () { return analytics_post$1; });
-const _lazy_NgIfiD = () => Promise.resolve().then(function () { return _id__delete$3; });
-const _lazy_VgmluP = () => Promise.resolve().then(function () { return index_get$9; });
-const _lazy_pft4JA = () => Promise.resolve().then(function () { return index_post$d; });
-const _lazy_mcFkvk = () => Promise.resolve().then(function () { return status_put$3; });
-const _lazy_EyHUv6 = () => Promise.resolve().then(function () { return documents_post$1; });
-const _lazy_uV84uz = () => Promise.resolve().then(function () { return _id__get$3; });
-const _lazy_lm5NjB = () => Promise.resolve().then(function () { return message_post$1; });
-const _lazy_uVoecV = () => Promise.resolve().then(function () { return _id__get$1; });
-const _lazy_oNSmG1 = () => Promise.resolve().then(function () { return index_post$b; });
-const _lazy_jR2hka = () => Promise.resolve().then(function () { return index_get$7; });
-const _lazy_cUgZir = () => Promise.resolve().then(function () { return index_post$9; });
-const _lazy_5VcWhK = () => Promise.resolve().then(function () { return read_put$1; });
-const _lazy_AxtXjb = () => Promise.resolve().then(function () { return _orderId__delete$1; });
-const _lazy_1MDYyP = () => Promise.resolve().then(function () { return index_post$7; });
-const _lazy_7Uz1GG = () => Promise.resolve().then(function () { return resolveOrder_put$1; });
-const _lazy_J5CprQ = () => Promise.resolve().then(function () { return index_get$5; });
-const _lazy_rkNwkt = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/orders/index.post.js');
-const _lazy_XbDSwR = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/orders/index.put.js');
-const _lazy_DkVgvv = () => Promise.resolve().then(function () { return _id__delete$1; });
-const _lazy_0hTVFO = () => Promise.resolve().then(function () { return ids_get$1; });
-const _lazy_rSu1bW = () => Promise.resolve().then(function () { return index_get$3; });
-const _lazy_dzsKtZ = () => Promise.resolve().then(function () { return index_post$5; });
-const _lazy_gXYWfO = () => Promise.resolve().then(function () { return index_put$1; });
-const _lazy_ZNLAMI = () => Promise.resolve().then(function () { return status_put$1; });
-const _lazy_UdZVEQ = () => Promise.resolve().then(function () { return realtimeAnalytics_post$1; });
-const _lazy_MqM4Y7 = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/%5BitemId%5D.delete.js');
-const _lazy_lY5ar5 = () => Promise.resolve().then(function () { return _category__get$1; });
-const _lazy_FOxMjO = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D.post.js');
-const _lazy_NTL2ea = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/%5Bid%5D.get.js');
-const _lazy_Cxx8rx = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/index.post.js');
-const _lazy_K48ssy = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/index.put.js');
-const _lazy_D06CRl = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/categories/%5Bcategory%5D/products/update/%5Bid%5D.put.js');
-const _lazy_BHZFHX = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/index.get.js');
-const _lazy_UgJOjM = () => import('file:///home/cody/git/velorisdesigns.com/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/store/index.put.js');
-const _lazy_jFvTqv = () => Promise.resolve().then(function () { return index_post$3; });
-const _lazy_hQimFL = () => Promise.resolve().then(function () { return webhook_post$1; });
-const _lazy_63LsdB = () => Promise.resolve().then(function () { return access_get$1; });
-const _lazy_OkR7J6 = () => Promise.resolve().then(function () { return index_delete$1; });
-const _lazy_9MfuL7 = () => Promise.resolve().then(function () { return index_get$1; });
-const _lazy_jmMb3a = () => Promise.resolve().then(function () { return index_post$1; });
-const _lazy_kwCJMo = () => Promise.resolve().then(function () { return role_put$1; });
-const _lazy_rrjIyM = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_CrfynD = () => Promise.resolve().then(function () { return analytics_post$1; });
+const _lazy_k9Kqj3 = () => Promise.resolve().then(function () { return _id__delete$3; });
+const _lazy_0y7xgj = () => Promise.resolve().then(function () { return index_get$9; });
+const _lazy_vTL4E1 = () => Promise.resolve().then(function () { return index_post$l; });
+const _lazy_YyQ9OT = () => Promise.resolve().then(function () { return status_put$3; });
+const _lazy_YDWNLR = () => Promise.resolve().then(function () { return documents_post$1; });
+const _lazy_Wf3SAz = () => Promise.resolve().then(function () { return _id__get$4; });
+const _lazy_QdlGBB = () => Promise.resolve().then(function () { return message_post$1; });
+const _lazy_AWoeU9 = () => Promise.resolve().then(function () { return _id__get$2; });
+const _lazy_mUd2cx = () => Promise.resolve().then(function () { return index_post$j; });
+const _lazy_ecBJyb = () => Promise.resolve().then(function () { return index_post$h; });
+const _lazy_EOjQZF = () => Promise.resolve().then(function () { return _uid__get$1; });
+const _lazy_tdIALH = () => Promise.resolve().then(function () { return index_post$f; });
+const _lazy_J0N2JV = () => Promise.resolve().then(function () { return read_put$1; });
+const _lazy_JLqNEr = () => Promise.resolve().then(function () { return _orderId__delete$1; });
+const _lazy_ICGbPV = () => Promise.resolve().then(function () { return index_post$d; });
+const _lazy_XKMiBZ = () => Promise.resolve().then(function () { return resolveOrder_put$1; });
+const _lazy_rhWvCJ = () => Promise.resolve().then(function () { return index_get$7; });
+const _lazy_skmEC5 = () => Promise.resolve().then(function () { return index_post$b; });
+const _lazy_omlrXN = () => Promise.resolve().then(function () { return index_put$7; });
+const _lazy_q9NNUV = () => Promise.resolve().then(function () { return index_post$9; });
+const _lazy_qPohQ8 = () => Promise.resolve().then(function () { return _id__delete$1; });
+const _lazy_ofJHrt = () => Promise.resolve().then(function () { return ids_get$1; });
+const _lazy_YK9nru = () => Promise.resolve().then(function () { return index_get$5; });
+const _lazy_L36KtR = () => Promise.resolve().then(function () { return index_post$7; });
+const _lazy_SNBWAa = () => Promise.resolve().then(function () { return index_put$5; });
+const _lazy_xrOs3v = () => Promise.resolve().then(function () { return status_put$1; });
+const _lazy_LeW7MR = () => Promise.resolve().then(function () { return updateAmountPaid$1; });
+const _lazy_83ejRv = () => Promise.resolve().then(function () { return realtimeAnalytics_post$1; });
+const _lazy_GAJLNo = () => Promise.resolve().then(function () { return _itemId__delete$1; });
+const _lazy_DYNror = () => Promise.resolve().then(function () { return _category__get$1; });
+const _lazy_gwMElM = () => Promise.resolve().then(function () { return _category__post$1; });
+const _lazy_JO9MtX = () => Promise.resolve().then(function () { return _id__get; });
+const _lazy_8dgyJZ = () => Promise.resolve().then(function () { return index_post$5; });
+const _lazy_gp91XR = () => Promise.resolve().then(function () { return index_put$3; });
+const _lazy_FOAGzC = () => Promise.resolve().then(function () { return _id__put$1; });
+const _lazy_rZ4riQ = () => Promise.resolve().then(function () { return index_get$3; });
+const _lazy_698Fxc = () => Promise.resolve().then(function () { return index_put$1; });
+const _lazy_QHFBE8 = () => Promise.resolve().then(function () { return index_post$3; });
+const _lazy_CEuXsr = () => Promise.resolve().then(function () { return orderWebhook_post$1; });
+const _lazy_tJbX9w = () => Promise.resolve().then(function () { return paymentIntent_post$1; });
+const _lazy_YAD2O5 = () => Promise.resolve().then(function () { return storeOrder_post$1; });
+const _lazy_FkliaJ = () => Promise.resolve().then(function () { return webhook_post$1; });
+const _lazy_3kDO9d = () => Promise.resolve().then(function () { return access_get$1; });
+const _lazy_PQN2V8 = () => Promise.resolve().then(function () { return index_delete$1; });
+const _lazy_8ER98V = () => Promise.resolve().then(function () { return index_get$1; });
+const _lazy_l1uUzu = () => Promise.resolve().then(function () { return index_post$1; });
+const _lazy_iH1QuY = () => Promise.resolve().then(function () { return role_put$1; });
+const _lazy_aR4IWV = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/api/analytics', handler: _lazy_jlHlWX, lazy: true, middleware: false, method: "post" },
-  { route: '/api/blogs/:id', handler: _lazy_NgIfiD, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/blogs', handler: _lazy_VgmluP, lazy: true, middleware: false, method: "get" },
-  { route: '/api/blogs', handler: _lazy_pft4JA, lazy: true, middleware: false, method: "post" },
-  { route: '/api/blogs/status', handler: _lazy_mcFkvk, lazy: true, middleware: false, method: "put" },
-  { route: '/api/chatrooms/documents', handler: _lazy_EyHUv6, lazy: true, middleware: false, method: "post" },
-  { route: '/api/chatrooms/documents/:id', handler: _lazy_uV84uz, lazy: true, middleware: false, method: "get" },
-  { route: '/api/chatrooms/message', handler: _lazy_lm5NjB, lazy: true, middleware: false, method: "post" },
-  { route: '/api/chatrooms/messages/:id', handler: _lazy_uVoecV, lazy: true, middleware: false, method: "get" },
-  { route: '/api/galleries', handler: _lazy_oNSmG1, lazy: true, middleware: false, method: "post" },
-  { route: '/api/notifications', handler: _lazy_jR2hka, lazy: true, middleware: false, method: "get" },
-  { route: '/api/notifications', handler: _lazy_cUgZir, lazy: true, middleware: false, method: "post" },
-  { route: '/api/notifications/read', handler: _lazy_5VcWhK, lazy: true, middleware: false, method: "put" },
-  { route: '/api/orders/incomplete/:orderId', handler: _lazy_AxtXjb, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/orders/incomplete', handler: _lazy_1MDYyP, lazy: true, middleware: false, method: "post" },
-  { route: '/api/orders/incomplete/resolve-order', handler: _lazy_7Uz1GG, lazy: true, middleware: false, method: "put" },
-  { route: '/api/orders', handler: _lazy_J5CprQ, lazy: true, middleware: false, method: "get" },
-  { route: '/api/orders', handler: _lazy_rkNwkt, lazy: true, middleware: false, method: "post" },
-  { route: '/api/orders', handler: _lazy_XbDSwR, lazy: true, middleware: false, method: "put" },
-  { route: '/api/projects/:id', handler: _lazy_DkVgvv, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/projects/ids', handler: _lazy_0hTVFO, lazy: true, middleware: false, method: "get" },
-  { route: '/api/projects', handler: _lazy_rSu1bW, lazy: true, middleware: false, method: "get" },
-  { route: '/api/projects', handler: _lazy_dzsKtZ, lazy: true, middleware: false, method: "post" },
-  { route: '/api/projects', handler: _lazy_gXYWfO, lazy: true, middleware: false, method: "put" },
-  { route: '/api/projects/status', handler: _lazy_ZNLAMI, lazy: true, middleware: false, method: "put" },
-  { route: '/api/realtimeAnalytics', handler: _lazy_UdZVEQ, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/:itemId', handler: _lazy_MqM4Y7, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/store/categories/:category', handler: _lazy_lY5ar5, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store/categories/:category', handler: _lazy_FOxMjO, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/categories/:category/products/:id', handler: _lazy_NTL2ea, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store/categories/:category/products', handler: _lazy_Cxx8rx, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/categories/:category/products', handler: _lazy_K48ssy, lazy: true, middleware: false, method: "put" },
-  { route: '/api/store/categories/:category/products/update/:id', handler: _lazy_D06CRl, lazy: true, middleware: false, method: "put" },
-  { route: '/api/store', handler: _lazy_BHZFHX, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store', handler: _lazy_UgJOjM, lazy: true, middleware: false, method: "put" },
-  { route: '/api/stripe', handler: _lazy_jFvTqv, lazy: true, middleware: false, method: "post" },
-  { route: '/api/stripe/webhook', handler: _lazy_hQimFL, lazy: true, middleware: false, method: "post" },
-  { route: '/api/users/access', handler: _lazy_63LsdB, lazy: true, middleware: false, method: "get" },
-  { route: '/api/users', handler: _lazy_OkR7J6, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/users', handler: _lazy_9MfuL7, lazy: true, middleware: false, method: "get" },
-  { route: '/api/users', handler: _lazy_jmMb3a, lazy: true, middleware: false, method: "post" },
-  { route: '/api/users/role', handler: _lazy_kwCJMo, lazy: true, middleware: false, method: "put" },
-  { route: '/__nuxt_error', handler: _lazy_rrjIyM, lazy: true, middleware: false, method: undefined },
-  { route: '/_fonts/**', handler: _lazy_rrjIyM, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_rrjIyM, lazy: true, middleware: false, method: undefined }
+  { route: '/api/analytics', handler: _lazy_CrfynD, lazy: true, middleware: false, method: "post" },
+  { route: '/api/blogs/:id', handler: _lazy_k9Kqj3, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/blogs', handler: _lazy_0y7xgj, lazy: true, middleware: false, method: "get" },
+  { route: '/api/blogs', handler: _lazy_vTL4E1, lazy: true, middleware: false, method: "post" },
+  { route: '/api/blogs/status', handler: _lazy_YyQ9OT, lazy: true, middleware: false, method: "put" },
+  { route: '/api/chatrooms/documents', handler: _lazy_YDWNLR, lazy: true, middleware: false, method: "post" },
+  { route: '/api/chatrooms/documents/:id', handler: _lazy_Wf3SAz, lazy: true, middleware: false, method: "get" },
+  { route: '/api/chatrooms/message', handler: _lazy_QdlGBB, lazy: true, middleware: false, method: "post" },
+  { route: '/api/chatrooms/messages/:id', handler: _lazy_AWoeU9, lazy: true, middleware: false, method: "get" },
+  { route: '/api/emails', handler: _lazy_mUd2cx, lazy: true, middleware: false, method: "post" },
+  { route: '/api/galleries', handler: _lazy_ecBJyb, lazy: true, middleware: false, method: "post" },
+  { route: '/api/notifications/:uid', handler: _lazy_EOjQZF, lazy: true, middleware: false, method: "get" },
+  { route: '/api/notifications', handler: _lazy_tdIALH, lazy: true, middleware: false, method: "post" },
+  { route: '/api/notifications/read', handler: _lazy_J0N2JV, lazy: true, middleware: false, method: "put" },
+  { route: '/api/orders/incomplete/:orderId', handler: _lazy_JLqNEr, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/orders/incomplete', handler: _lazy_ICGbPV, lazy: true, middleware: false, method: "post" },
+  { route: '/api/orders/incomplete/resolve-order', handler: _lazy_XKMiBZ, lazy: true, middleware: false, method: "put" },
+  { route: '/api/orders', handler: _lazy_rhWvCJ, lazy: true, middleware: false, method: "get" },
+  { route: '/api/orders', handler: _lazy_skmEC5, lazy: true, middleware: false, method: "post" },
+  { route: '/api/orders', handler: _lazy_omlrXN, lazy: true, middleware: false, method: "put" },
+  { route: '/api/payments', handler: _lazy_q9NNUV, lazy: true, middleware: false, method: "post" },
+  { route: '/api/projects/:id', handler: _lazy_qPohQ8, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/projects/ids', handler: _lazy_ofJHrt, lazy: true, middleware: false, method: "get" },
+  { route: '/api/projects', handler: _lazy_YK9nru, lazy: true, middleware: false, method: "get" },
+  { route: '/api/projects', handler: _lazy_L36KtR, lazy: true, middleware: false, method: "post" },
+  { route: '/api/projects', handler: _lazy_SNBWAa, lazy: true, middleware: false, method: "put" },
+  { route: '/api/projects/status', handler: _lazy_xrOs3v, lazy: true, middleware: false, method: "put" },
+  { route: '/api/projects/update-amount-paid', handler: _lazy_LeW7MR, lazy: true, middleware: false, method: undefined },
+  { route: '/api/realtimeAnalytics', handler: _lazy_83ejRv, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/:itemId', handler: _lazy_GAJLNo, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/store/categories/:category', handler: _lazy_DYNror, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store/categories/:category', handler: _lazy_gwMElM, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/categories/:category/products/:id', handler: _lazy_JO9MtX, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store/categories/:category/products', handler: _lazy_8dgyJZ, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/categories/:category/products', handler: _lazy_gp91XR, lazy: true, middleware: false, method: "put" },
+  { route: '/api/store/categories/:category/products/update/:id', handler: _lazy_FOAGzC, lazy: true, middleware: false, method: "put" },
+  { route: '/api/store', handler: _lazy_rZ4riQ, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store', handler: _lazy_698Fxc, lazy: true, middleware: false, method: "put" },
+  { route: '/api/stripe', handler: _lazy_QHFBE8, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/orderWebhook', handler: _lazy_CEuXsr, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/payment-intent', handler: _lazy_tJbX9w, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/storeOrder', handler: _lazy_YAD2O5, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/webhook', handler: _lazy_FkliaJ, lazy: true, middleware: false, method: "post" },
+  { route: '/api/users/access', handler: _lazy_3kDO9d, lazy: true, middleware: false, method: "get" },
+  { route: '/api/users', handler: _lazy_PQN2V8, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/users', handler: _lazy_8ER98V, lazy: true, middleware: false, method: "get" },
+  { route: '/api/users', handler: _lazy_l1uUzu, lazy: true, middleware: false, method: "post" },
+  { route: '/api/users/role', handler: _lazy_iH1QuY, lazy: true, middleware: false, method: "put" },
+  { route: '/__nuxt_error', handler: _lazy_aR4IWV, lazy: true, middleware: false, method: undefined },
+  { route: '/_fonts/**', handler: _lazy_aR4IWV, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_aR4IWV, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -1298,7 +1311,7 @@ const index_get$9 = /*#__PURE__*/Object.freeze({
   default: index_get$8
 });
 
-const index_post$c = defineEventHandler(async (event) => {
+const index_post$k = defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { content, filename } = body;
   if (!filename || !filename.endsWith(".md")) {
@@ -1316,9 +1329,9 @@ const index_post$c = defineEventHandler(async (event) => {
   }
 });
 
-const index_post$d = /*#__PURE__*/Object.freeze({
+const index_post$l = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$c
+  default: index_post$k
 });
 
 const status_put$2 = eventHandler(async (event) => {
@@ -1362,7 +1375,7 @@ const documents_post$1 = /*#__PURE__*/Object.freeze({
   default: documents_post
 });
 
-const _id__get$2 = eventHandler(async (event) => {
+const _id__get$3 = eventHandler(async (event) => {
   var _a;
   const db = event.context.velorisDb;
   const id = (_a = event.context.params) == null ? void 0 : _a.id;
@@ -1382,9 +1395,9 @@ const _id__get$2 = eventHandler(async (event) => {
   }
 });
 
-const _id__get$3 = /*#__PURE__*/Object.freeze({
+const _id__get$4 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: _id__get$2
+  default: _id__get$3
 });
 
 const message_post = eventHandler(async (event) => {
@@ -1411,7 +1424,7 @@ const message_post$1 = /*#__PURE__*/Object.freeze({
   default: message_post
 });
 
-const _id__get = eventHandler(async (event) => {
+const _id__get$1 = eventHandler(async (event) => {
   var _a;
   const db = event.context.velorisDb;
   const id = (_a = event.context.params) == null ? void 0 : _a.id;
@@ -1432,40 +1445,74 @@ const _id__get = eventHandler(async (event) => {
   }
 });
 
-const _id__get$1 = /*#__PURE__*/Object.freeze({
+const _id__get$2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: _id__get
+  default: _id__get$1
 });
 
-const index_post$a = eventHandler(async (event) => {
+const transporter = nodemailer.createTransport({
+  host: "smtp.eu.mailgun.org",
+  port: 587,
+  auth: {
+    user: `veloris@mail.codywakeford.com`,
+    pass: "ezcWNTbc7sz!WiG"
+  }
+});
+const index_post$i = eventHandler(async (event) => {
+  const { email } = await readBody(event);
+  email.from = "codypwakeford@gmail.com";
+  try {
+    await transporter.sendMail(email);
+  } catch (error) {
+    throw createError({ statusCode: 500, message: `Error sending email: ${error}.` });
+  }
+});
+
+const index_post$j = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_post$i
+});
+
+const index_post$g = eventHandler(async (event) => {
   event.context.db;
   event.context.storage;
 });
 
-const index_post$b = /*#__PURE__*/Object.freeze({
+const index_post$h = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$a
+  default: index_post$g
 });
 
-const index_get$6 = eventHandler(async (event) => {
-  const db = event.context.db;
-  const colRef = collection(db, "notifications");
-  const snapShot = await getDocs(colRef);
-  const notifications = snapShot.docs.map(
-    (doc) => ({
-      id: doc.id,
-      ...doc.data()
-    })
-  );
-  return notifications;
+const _uid__get = eventHandler(async (event) => {
+  var _a, _b;
+  const db = event.context.velorisDb;
+  if (!((_b = (_a = event.context) == null ? void 0 : _a.params) == null ? void 0 : _b.uid)) {
+    throw createError({ statusCode: 400, statusMessage: "id parameter required" });
+  }
+  const uid = event.context.params.uid;
+  const usersColRef = collection(db, "users");
+  const userDocRef = doc(usersColRef, uid);
+  const userNotificationColRef = collection(userDocRef, "notifications");
+  try {
+    const snapShot = await getDocs(userNotificationColRef);
+    const notifications = snapShot.docs.map(
+      (doc2) => ({
+        id: doc2.id,
+        ...doc2.data()
+      })
+    );
+    return notifications;
+  } catch (error) {
+    throw createError({ statusCode: 500, statusMessage: `Error getting notifications` });
+  }
 });
 
-const index_get$7 = /*#__PURE__*/Object.freeze({
+const _uid__get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_get$6
+  default: _uid__get
 });
 
-const index_post$8 = defineEventHandler(async (event) => {
+const index_post$e = defineEventHandler(async (event) => {
   const db = event.context.db;
   const { notification } = await readBody(event);
   if (!notification)
@@ -1479,13 +1526,21 @@ const index_post$8 = defineEventHandler(async (event) => {
       type: "none"
     };
   }
-  const colRef = collection(db, "notifications");
-  try {
-    await addDoc(colRef, notification);
-    console.log("Notification document added successfully");
-  } catch (error) {
-    throw createError({
-      statusCode: 500
+  const usersColRef = collection(db, "users");
+  for (const email of notification.to) {
+    const q = query(usersColRef, where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (userDoc) => {
+      const userDocRef = doc(db, "users", userDoc.id);
+      const userNotificationColRef = collection(userDocRef, "notifications");
+      try {
+        await addDoc(userNotificationColRef, notification);
+      } catch (error) {
+        throw createError({
+          statusCode: 500,
+          statusMessage: `Error adding notification for user with email ${email}: ${error.message}`
+        });
+      }
     });
   }
 });
@@ -1504,6 +1559,11 @@ function getStyle(notification) {
     case "blog":
       style["icon"] = "material-symbols:edit-outline";
       break;
+    case "client":
+      style["icon"] = "streamline:information-desk-customer";
+      break;
+    case "project":
+      style["icon"] = "octicon:project";
   }
   switch (notification.mode) {
     case "danger":
@@ -1522,20 +1582,25 @@ function getStyle(notification) {
   return style;
 }
 
-const index_post$9 = /*#__PURE__*/Object.freeze({
+const index_post$f = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$8
+  default: index_post$e
 });
 
 const read_put = eventHandler(async (event) => {
   const db = event.context.db;
-  const { id, read } = await readBody(event);
-  const colRef = collection(db, "notifications");
-  const docRef = doc(colRef, id);
+  const { notificationId, read, userId } = await readBody(event);
+  const usersColRef = collection(db, "users");
+  const userDocRef = doc(usersColRef, userId);
+  const userNotificationColRef = collection(userDocRef, "notifications");
+  const docRef = doc(userNotificationColRef, notificationId);
   try {
     await updateDoc(docRef, { read });
   } catch (error) {
-    console.error(error);
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Error updating notification read status: ${error}`
+    });
   }
 });
 
@@ -1565,7 +1630,7 @@ const _orderId__delete$1 = /*#__PURE__*/Object.freeze({
   default: _orderId__delete
 });
 
-const index_post$6 = eventHandler(async (event) => {
+const index_post$c = eventHandler(async (event) => {
   const db = event.context.db;
   const body = await readBody(event);
   const colRef = collection(db, "incomplete-orders");
@@ -1577,9 +1642,9 @@ const index_post$6 = eventHandler(async (event) => {
   }
 });
 
-const index_post$7 = /*#__PURE__*/Object.freeze({
+const index_post$d = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$6
+  default: index_post$c
 });
 
 const resolveOrder_put = eventHandler(async (event) => {
@@ -1632,7 +1697,7 @@ const resolveOrder_put$1 = /*#__PURE__*/Object.freeze({
   default: resolveOrder_put
 });
 
-const index_get$4 = eventHandler(async (event) => {
+const index_get$6 = eventHandler(async (event) => {
   try {
     const db = event.context.db;
     const ordersCol = collection(db, "orders");
@@ -1650,9 +1715,79 @@ const index_get$4 = eventHandler(async (event) => {
   }
 });
 
-const index_get$5 = /*#__PURE__*/Object.freeze({
+const index_get$7 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_get$4
+  default: index_get$6
+});
+
+const index_post$a = eventHandler(async (event) => {
+  const db = event.context.db;
+  const body = await readBody(event);
+  const colRef = collection(db, "orders");
+  try {
+    await addDoc(colRef, body);
+    console.log("Document successfully added!");
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  }
+});
+
+const index_post$b = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_post$a
+});
+
+const index_put$6 = eventHandler(async (event) => {
+  const db = event.context.db;
+  const body = await readBody(event);
+  const { id, newStatus } = body;
+  if (!id || !newStatus) {
+    return {
+      status: 400,
+      body: "Missing docId or newStatus in the request body"
+    };
+  }
+  const docRef = doc(db, "orders", id);
+  try {
+    await updateDoc(docRef, { status: newStatus });
+    return {
+      status: 200,
+      body: "Document updated successfully"
+    };
+  } catch (error) {
+    console.error("Error updating document:", error);
+    return {
+      status: 500,
+      body: "Failed to update document"
+    };
+  }
+});
+
+const index_put$7 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_put$6
+});
+
+const index_post$8 = eventHandler(async (event) => {
+  const db = event.context.db;
+  const { paymentRecord } = await readBody(event);
+  if (!paymentRecord) {
+    throw createError({ statusCode: 400, statusMessage: "Payment record not recieved." });
+  }
+  const colRef = collection(db, "payments");
+  try {
+    await addDoc(colRef, paymentRecord);
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Error saving payment record ${error}`
+    });
+  }
+});
+
+const index_post$9 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_post$8
 });
 
 const _id__delete = eventHandler(async (event) => {
@@ -1691,23 +1826,23 @@ const ids_get$1 = /*#__PURE__*/Object.freeze({
   default: ids_get
 });
 
-const index_get$2 = eventHandler(async (event) => {
+const index_get$4 = eventHandler(async (event) => {
   const db = event.context.velorisDb;
   const colRef = collection(db, "projects");
   const snapshot = await getDocs(colRef);
-  const projectsArray = snapshot.docs.map((doc2) => ({
-    id: doc2.id,
-    ...doc2.data()
+  const projectsArray = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data()
   }));
   return projectsArray || [];
 });
 
-const index_get$3 = /*#__PURE__*/Object.freeze({
+const index_get$5 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_get$2
+  default: index_get$4
 });
 
-const index_post$4 = eventHandler(async (event) => {
+const index_post$6 = eventHandler(async (event) => {
   const db = event.context.velorisDb;
   const { project } = await readBody(event);
   if (!project) {
@@ -1727,12 +1862,12 @@ const index_post$4 = eventHandler(async (event) => {
   }
 });
 
-const index_post$5 = /*#__PURE__*/Object.freeze({
+const index_post$7 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$4
+  default: index_post$6
 });
 
-const index_put = eventHandler(async (event) => {
+const index_put$4 = eventHandler(async (event) => {
   const db = event.context.velorisDb;
   const { id, key, value } = await readBody(event);
   const colRef = collection(db, "projects");
@@ -1747,9 +1882,9 @@ const index_put = eventHandler(async (event) => {
   }
 });
 
-const index_put$1 = /*#__PURE__*/Object.freeze({
+const index_put$5 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_put
+  default: index_put$4
 });
 
 const status_put = eventHandler(async (event) => {
@@ -1772,6 +1907,31 @@ const status_put = eventHandler(async (event) => {
 const status_put$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   default: status_put
+});
+
+const updateAmountPaid = eventHandler(async (event) => {
+  const db = event.context.db;
+  const { id, amountPaid } = await readBody(event);
+  const colRef = collection(db, "projects");
+  const docRef = doc(colRef, id);
+  try {
+    const snapshot = await getDoc(docRef);
+    if (!snapshot.exists())
+      return;
+    const data = snapshot.data();
+    if (!data || !data.quote) {
+      throw createError({ statusCode: 404, statusMessage: "Project quote not found!" });
+    }
+    data.quote.amountPaid += amountPaid;
+    await updateDoc(docRef, { quote: data.quote });
+  } catch (error) {
+    throw createError({ statusCode: 500, statusMessage: `Error reading document: ${error}` });
+  }
+});
+
+const updateAmountPaid$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: updateAmountPaid
 });
 
 const __filename = fileURLToPath(globalThis._importMeta_.url);
@@ -1798,6 +1958,27 @@ const realtimeAnalytics_post$1 = /*#__PURE__*/Object.freeze({
   default: realtimeAnalytics_post
 });
 
+const _itemId__delete = eventHandler(async (event) => {
+  const db = event.context.db;
+  const itemId = event.context.params.itemId;
+  if (!itemId) {
+    console.log("Item id is missing");
+  }
+  console.log(itemId);
+  const docRef = doc(db, "store/default/items", itemId);
+  try {
+    await deleteDoc(docRef);
+    console.log("success");
+  } catch (error) {
+    console.error("Error deleting document:", error);
+  }
+});
+
+const _itemId__delete$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: _itemId__delete
+});
+
 const _category__get = eventHandler(async (event) => {
   const db = event.context.db;
   const params = event.context.params || {};
@@ -1818,9 +1999,266 @@ const _category__get$1 = /*#__PURE__*/Object.freeze({
   default: _category__get
 });
 
+const _category__post = eventHandler(async (event) => {
+  const db = event.context.db;
+  const category = event.context.params.category;
+  try {
+    const colRef = collection(db, "store");
+    const docRef = doc(colRef, category);
+    await setDoc(docRef, {});
+    const itemsCollectionRef = collection(docRef, "items");
+    await addDoc(itemsCollectionRef, {});
+    console.log("Category successfully added!");
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  }
+});
+
+const _category__post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: _category__post
+});
+
+const _id__get = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+const index_post$4 = eventHandler(async (event) => {
+  const db = event.context.db;
+  const category = event.context.params.category;
+  const body = await readBody(event);
+  body["category"] = category;
+  const categoryDocRef = doc(db, `store`, category);
+  const itemsColRef = collection(categoryDocRef, "items");
+  try {
+    await addDoc(itemsColRef, body);
+    console.log("Document successfully added!");
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  }
+});
+
+const index_post$5 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_post$4
+});
+
+const index_put$2 = eventHandler(async (event) => {
+  const body = await readBody(event);
+  const docId = body.id;
+  const category = event.context.params.category;
+  const { id, ...newDocData } = body;
+  const firebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    projectId: process.env.FIREBASE_PROJECT_ID
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  if (!docId)
+    console.log("No docId!");
+  const docRef = doc(db, `store/${category}/items`, docId);
+  console.log("Updating", docId);
+  try {
+    await setDoc(docRef, newDocData);
+    console.log("Updated");
+  } catch (error) {
+    console.error("Error replacing document:", error);
+  }
+});
+
+const index_put$3 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_put$2
+});
+
+const _id__put = eventHandler(async (event) => {
+  const category = event.context.params.category;
+  const docId = event.context.params.id;
+  const firebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    projectId: process.env.FIREBASE_PROJECT_ID
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  if (!docId)
+    console.log("No docId!");
+  const docRef = doc(db, `store/${category}/items`, docId);
+  try {
+    await updateDoc(docRef, { visibility: "sold" });
+    console.log("Updated item to ");
+  } catch (error) {
+    console.error("Error replacing document:", error);
+  }
+});
+
+const _id__put$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: _id__put
+});
+
+const index_get$2 = eventHandler(async (event) => {
+  const db = event.context.db;
+  const itemsColGroupRef = collectionGroup(db, "items");
+  const querySnapshot = await getDocs(itemsColGroupRef);
+  const categories = {};
+  querySnapshot.docs.forEach((doc) => {
+    const category = doc.ref.parent.parent.id;
+    const item = {
+      id: doc.id,
+      ...doc.data()
+    };
+    if (!categories[category]) {
+      categories[category] = [];
+    }
+    categories[category].push(item);
+  });
+  return categories;
+});
+
+const index_get$3 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_get$2
+});
+
+const index_put = eventHandler(async (event) => {
+  const db = event.context.db;
+  const body = await readBody(event);
+  const docId = body.id;
+  const { id, ...newDocData } = body;
+  if (!docId)
+    console.log("No docId!");
+  const docRef = doc(db, "orders", docId);
+  console.log("Updating", docId);
+  try {
+    await setDoc(docRef, newDocData);
+    console.log("Updated");
+  } catch (error) {
+    console.error("Error replacing document:", error);
+  }
+});
+
+const index_put$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_put
+});
+
+const config$4 = useRuntimeConfig();
+const STRIPE_SECRET_KEY$1 = config$4.STRIPE_SECRET_KEY;
+const stripe$4 = new Stripe(STRIPE_SECRET_KEY$1);
+const index_post$2 = eventHandler(async (event) => {
+  const { paymentOptions } = await readBody(event);
+  const origin = event.node.req.headers["origin"];
+  try {
+    const session = await stripe$4.checkout.sessions.create({
+      ...paymentOptions,
+      success_url: `${origin}/admin/dev?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}`
+    });
+    return { sessionId: session.id };
+  } catch (error) {
+    throw createError({ statusCode: 500, statusMessage: `Error creating session ID: ${error}` });
+  }
+});
+
+const index_post$3 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: index_post$2
+});
+
+const config$3 = useRuntimeConfig();
+const STRIPE_WEBHOOK_SECRET = config$3.STRIPE_WEBHOOK_SECRET;
+const stripe$3 = new Stripe(process.env.STRIPE_WEBHOOK_SECRET, {
+  apiVersion: "2024-06-20"
+});
+const orderWebhook_post = eventHandler(async (event) => {
+  const sig = event.node.req.headers["stripe-signature"];
+  const body = await readRawBody(event);
+  const origin = event.node.req.headers["origin"];
+  let stripeEvent;
+  if (!sig || !body) {
+    console.error("Missing signature or body");
+    return { error: "Missing signature or body" };
+  }
+  try {
+    stripeEvent = stripe$3.webhooks.constructEvent(
+      body,
+      sig,
+      STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.error(`Webhook signature verification failed.`, err.message);
+    return { error: "Webhook signature verification failed." };
+  }
+  switch (stripeEvent.type) {
+    case "checkout.session.completed": {
+      const paymentIntent = stripeEvent.data.object;
+      const metadata = paymentIntent.metadata;
+      const orderId = metadata == null ? void 0 : metadata.orderId;
+      if (!orderId) {
+        console.error("Missing or invalid orderId in metadata");
+        return { error: "Missing or invalid orderId in metadata" };
+      }
+      try {
+        await useFetch(
+          `${origin}/api/orders/incomplete/resolve-order`,
+          {
+            method: "PUT",
+            body: { orderId }
+          }
+        );
+      } catch (error) {
+        console.error("Error resolving order", error);
+      }
+      console.log("Payment received, order is live.");
+      break;
+    }
+    default:
+      console.log(`Unhandled event type ${stripeEvent.type}`);
+      return 500;
+  }
+  return { received: true };
+});
+
+const orderWebhook_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: orderWebhook_post
+});
+
+const config$2 = useRuntimeConfig();
+const STRIPE_SECRET_KEY = config$2.STRIPE_SECRET_KEY;
+const stripe$2 = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+const paymentIntent_post = eventHandler(async (event) => {
+  const { paymentOptions } = await readBody(event);
+  try {
+    const paymentIntent = await stripe$2.paymentIntents.create({
+      ...paymentOptions,
+      payment_method_types: ["card"]
+    });
+    return { clientSecret: paymentIntent.client_secret };
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Error creating client secret: ${error}`
+    });
+  }
+});
+
+const paymentIntent_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: paymentIntent_post
+});
+
 const config$1 = useRuntimeConfig();
 const stripe$1 = new Stripe(config$1.STRIPE_SECRET_KEY);
-const index_post$2 = eventHandler(async (event) => {
+const storeOrder_post = eventHandler(async (event) => {
   const body = await readBody(event);
   const { total, itemName, order } = body;
   const origin = event.node.req.headers["origin"];
@@ -1861,63 +2299,36 @@ const index_post$2 = eventHandler(async (event) => {
   }
 });
 
-const index_post$3 = /*#__PURE__*/Object.freeze({
+const storeOrder_post$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$2
+  default: storeOrder_post
 });
 
 const config = useRuntimeConfig();
-const STRIPE_WEBHOOK_SECRET = config.STRIPE_WEBHOOK_SECRET;
-const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET, {
-  apiVersion: "2024-06-20"
-});
+const stripe = new Stripe(config.STRIPE_SECRET_KEY);
 const webhook_post = eventHandler(async (event) => {
-  const sig = event.node.req.headers["stripe-signature"];
-  const body = await readRawBody(event);
+  const body = await readBody(event);
+  const { paymentOptions } = body;
   const origin = event.node.req.headers["origin"];
-  let stripeEvent;
-  if (!sig || !body) {
-    console.error("Missing signature or body");
-    return { error: "Missing signature or body" };
-  }
   try {
-    stripeEvent = stripe.webhooks.constructEvent(
-      body,
-      sig,
-      STRIPE_WEBHOOK_SECRET
-    );
-  } catch (err) {
-    console.error(`Webhook signature verification failed.`, err.message);
-    return { error: "Webhook signature verification failed." };
+    const session = await stripe.checkout.sessions.create({
+      ...paymentOptions,
+      success_url: `${origin}/admin/dev?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}`
+      // Veloris 2.5% service fee //
+      // payment_intent_data: {
+      //     application_fee_amount: Math.round(total * 0.025),
+      //     transfer_data: {
+      //         // TODO: Change to company account, this is Cody's test account //
+      //         destination: "acct_1Puv9RDO9pf6iPuQ",
+      //     },
+      // },
+    });
+    return { sessionId: session.id };
+  } catch (error) {
+    console.log(error);
+    return { error: error.message };
   }
-  switch (stripeEvent.type) {
-    case "checkout.session.completed": {
-      const paymentIntent = stripeEvent.data.object;
-      const metadata = paymentIntent.metadata;
-      const orderId = metadata == null ? void 0 : metadata.orderId;
-      if (!orderId) {
-        console.error("Missing or invalid orderId in metadata");
-        return { error: "Missing or invalid orderId in metadata" };
-      }
-      try {
-        await useFetch(
-          `${origin}/api/orders/incomplete/resolve-order`,
-          {
-            method: "PUT",
-            body: { orderId }
-          }
-        );
-      } catch (error) {
-        console.error("Error resolving order", error);
-      }
-      console.log("Payment received, order is live.");
-      break;
-    }
-    default:
-      console.log(`Unhandled event type ${stripeEvent.type}`);
-      return 500;
-  }
-  return { received: true };
 });
 
 const webhook_post$1 = /*#__PURE__*/Object.freeze({
@@ -2025,9 +2436,13 @@ const index_post = eventHandler(async (event) => {
   if (!uid || !email || !domain)
     throw createError({ statusCode: 400 });
   const docRef = doc(db, "users", uid);
+  let role = "user";
+  {
+    role = "dev";
+  }
   const data = {
     email,
-    siteAccess: [{ domain, role: "user" }]
+    siteAccess: [{ domain, role }]
   };
   try {
     const docSnap = await getDoc(docRef);
@@ -2167,8 +2582,8 @@ function publicAssetsURL(...path) {
 
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
-const getClientManifest = () => import('file:///home/cody/git/velorisdesigns.com/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
-const getServerEntry = () => import('file:///home/cody/git/velorisdesigns.com/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file:///app/site/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file:///app/site/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
 const getSSRStyles = lazyCachedFunction(() => Promise.resolve().then(function () { return styles$1; }).then((r) => r.default || r));
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();

@@ -28,11 +28,16 @@ declare module 'nitropack' {
     '/api/chatrooms/messages/:id': {
       'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/chatrooms/messages/[id].get').default>>>>
     }
+    '/api/emails': {
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/emails/index.post').default>>>>
+    }
     '/api/galleries': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/galleries/index.post').default>>>>
     }
+    '/api/notifications/:uid': {
+      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/notifications/[uid].get').default>>>>
+    }
     '/api/notifications': {
-      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/notifications/index.get').default>>>>
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/notifications/index.post').default>>>>
     }
     '/api/notifications/read': {
@@ -52,6 +57,9 @@ declare module 'nitropack' {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/orders/index.post').default>>>>
       'put': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/orders/index.put').default>>>>
     }
+    '/api/payments': {
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/payments/index.post').default>>>>
+    }
     '/api/projects/:id': {
       'delete': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/projects/[id].delete').default>>>>
     }
@@ -65,6 +73,9 @@ declare module 'nitropack' {
     }
     '/api/projects/status': {
       'put': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/projects/status.put').default>>>>
+    }
+    '/api/projects/update-amount-paid': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/projects/update-amount-paid').default>>>>
     }
     '/api/realtimeAnalytics': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/realtimeAnalytics.post').default>>>>
@@ -93,6 +104,15 @@ declare module 'nitropack' {
     '/api/stripe': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/stripe/index.post').default>>>>
     }
+    '/api/stripe/orderWebhook': {
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/stripe/orderWebhook.post').default>>>>
+    }
+    '/api/stripe/payment-intent': {
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/stripe/payment-intent.post').default>>>>
+    }
+    '/api/stripe/storeOrder': {
+      'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/stripe/storeOrder.post').default>>>>
+    }
     '/api/stripe/webhook': {
       'post': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/stripe/webhook.post').default>>>>
     }
@@ -108,7 +128,7 @@ declare module 'nitropack' {
       'put': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/server/api/users/role.put').default>>>>
     }
     '/__nuxt_error': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.5_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__ysoah3fqaksetjhk3bs53psi7m/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nuxt@3.13.2_@parcel+watcher@2.4.1_@types+node@22.7.6_eslint@9.12.0_jiti@2.3.3__ioredis@5.4.1__o6r4wgqrhivc477k4xikommcgq/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
     }
   }
 }
