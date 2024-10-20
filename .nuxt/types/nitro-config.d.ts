@@ -3,10 +3,11 @@
 // App Config
 import type { Defu } from 'defu'
 
-import type { default as appConfig0 } from "../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/app.config";
-import type { default as appConfig1 } from "../../node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config";
+import type { default as appConfig0 } from "../../node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config";
+import type { default as appConfig1 } from "../../../dashboard/app.config";
+import type { default as appConfig2 } from "../../../dashboard/node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config";
 
-type UserAppConfig = Defu<{}, [typeof appConfig0, typeof appConfig1]>
+type UserAppConfig = Defu<{}, [typeof appConfig0, typeof appConfig1, typeof appConfig2]>
 
 declare module 'nitropack' {
   interface AppConfig extends UserAppConfig {}

@@ -4,15 +4,14 @@ import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
 import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, readRawBody, getResponseStatusText } from 'file:///app/site/node_modules/.pnpm/h3@1.13.0/node_modules/h3/dist/index.mjs';
-import { BetaAnalyticsDataClient } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/@google-analytics+data@4.8.0/node_modules/@google-analytics/data/build/src/index.js';
+import { BetaAnalyticsDataClient } from 'file:///app/dashboard/node_modules/.pnpm/@google-analytics+data@4.8.0/node_modules/@google-analytics/data/build/src/index.js';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, where, getDoc, setDoc, collectionGroup } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
-import axios from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/axios@1.7.7/node_modules/axios/index.js';
+import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, where, getDoc, setDoc } from 'file:///app/dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
+import axios from 'file:///app/dashboard/node_modules/.pnpm/axios@1.7.7/node_modules/axios/index.js';
 import { promises } from 'fs';
-import nodemailer from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/nodemailer@6.9.15/node_modules/nodemailer/lib/nodemailer.js';
-import { initializeApp } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/app/dist/index.mjs';
-import Stripe from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/stripe@16.12.0/node_modules/stripe/esm/stripe.esm.node.js';
+import nodemailer from 'file:///app/dashboard/node_modules/.pnpm/nodemailer@6.9.15/node_modules/nodemailer/lib/nodemailer.js';
+import Stripe from 'file:///app/dashboard/node_modules/.pnpm/stripe@16.12.0/node_modules/stripe/esm/stripe.esm.node.js';
 import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///app/site/node_modules/.pnpm/vue-bundle-renderer@2.1.1/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import { stringify, uneval } from 'file:///app/site/node_modules/.pnpm/devalue@5.1.1/node_modules/devalue/index.js';
 import destr from 'file:///app/site/node_modules/.pnpm/destr@2.0.3/node_modules/destr/dist/index.mjs';
@@ -34,8 +33,9 @@ import { consola } from 'file:///app/site/node_modules/.pnpm/consola@3.2.3/node_
 import { getContext } from 'file:///app/site/node_modules/.pnpm/unctx@2.3.1_webpack-sources@3.2.3/node_modules/unctx/dist/index.mjs';
 import { captureRawStackTrace, parseRawStackTrace } from 'file:///app/site/node_modules/.pnpm/errx@0.1.0/node_modules/errx/dist/index.js';
 import { isVNode, version, unref } from 'file:///app/site/node_modules/.pnpm/vue@3.5.12_typescript@5.6.3/node_modules/vue/index.mjs';
-import { getAuth } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/auth/dist/index.mjs';
-import { getStorage } from 'file:///app/site/node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/storage/dist/index.mjs';
+import { initializeApp } from 'file:///app/dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/app/dist/index.mjs';
+import { getAuth } from 'file:///app/dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/auth/dist/index.mjs';
+import { getStorage } from 'file:///app/dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/storage/dist/index.mjs';
 import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///app/site/node_modules/.pnpm/unhead@1.11.10/node_modules/unhead/dist/index.mjs';
 import { defineHeadPlugin } from 'file:///app/site/node_modules/.pnpm/@unhead+shared@1.11.10/node_modules/@unhead/shared/dist/index.mjs';
 
@@ -93,11 +93,17 @@ const appConfig1 = defineAppConfig({
   }
 });
 
+const appConfig2 = defineAppConfig({
+  myLayer: {
+    name: "Hello from Nuxt layer"
+  }
+});
+
 const inlineAppConfig = {
   "nuxt": {}
 };
 
-const appConfig = defuFn(appConfig0, appConfig1, inlineAppConfig);
+const appConfig = defuFn(appConfig0, appConfig1, appConfig2, inlineAppConfig);
 
 const _inlineRuntimeConfig = {
   "app": {
@@ -656,7 +662,7 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _wzLN2X2Ofa = (function(nitro) {
+const _ZEHZXRmqhM = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
@@ -681,7 +687,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _m9TZZt1JSW = (nitroApp) => {
+const _YF2BBAjZDf = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -867,8 +873,8 @@ const _9OsEmrLA18 = defineNitroPlugin(async (nitroApp) => {
 });
 
 const plugins = [
-  _wzLN2X2Ofa,
-_m9TZZt1JSW,
+  _ZEHZXRmqhM,
+_YF2BBAjZDf,
 _9OsEmrLA18
 ];
 
@@ -932,108 +938,108 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const _lazy_CrfynD = () => Promise.resolve().then(function () { return analytics_post$1; });
-const _lazy_k9Kqj3 = () => Promise.resolve().then(function () { return _id__delete$3; });
-const _lazy_0y7xgj = () => Promise.resolve().then(function () { return index_get$9; });
-const _lazy_vTL4E1 = () => Promise.resolve().then(function () { return index_post$l; });
-const _lazy_YyQ9OT = () => Promise.resolve().then(function () { return status_put$3; });
-const _lazy_YDWNLR = () => Promise.resolve().then(function () { return documents_post$1; });
-const _lazy_Wf3SAz = () => Promise.resolve().then(function () { return _id__get$4; });
-const _lazy_QdlGBB = () => Promise.resolve().then(function () { return message_post$1; });
-const _lazy_AWoeU9 = () => Promise.resolve().then(function () { return _id__get$2; });
-const _lazy_mUd2cx = () => Promise.resolve().then(function () { return index_post$j; });
-const _lazy_ecBJyb = () => Promise.resolve().then(function () { return index_post$h; });
-const _lazy_EOjQZF = () => Promise.resolve().then(function () { return _uid__get$1; });
-const _lazy_tdIALH = () => Promise.resolve().then(function () { return index_post$f; });
-const _lazy_J0N2JV = () => Promise.resolve().then(function () { return read_put$1; });
-const _lazy_JLqNEr = () => Promise.resolve().then(function () { return _orderId__delete$1; });
-const _lazy_ICGbPV = () => Promise.resolve().then(function () { return index_post$d; });
-const _lazy_XKMiBZ = () => Promise.resolve().then(function () { return resolveOrder_put$1; });
-const _lazy_rhWvCJ = () => Promise.resolve().then(function () { return index_get$7; });
-const _lazy_skmEC5 = () => Promise.resolve().then(function () { return index_post$b; });
-const _lazy_omlrXN = () => Promise.resolve().then(function () { return index_put$7; });
-const _lazy_q9NNUV = () => Promise.resolve().then(function () { return index_post$9; });
-const _lazy_qPohQ8 = () => Promise.resolve().then(function () { return _id__delete$1; });
-const _lazy_ofJHrt = () => Promise.resolve().then(function () { return ids_get$1; });
-const _lazy_YK9nru = () => Promise.resolve().then(function () { return index_get$5; });
-const _lazy_L36KtR = () => Promise.resolve().then(function () { return index_post$7; });
-const _lazy_SNBWAa = () => Promise.resolve().then(function () { return index_put$5; });
-const _lazy_xrOs3v = () => Promise.resolve().then(function () { return status_put$1; });
-const _lazy_LeW7MR = () => Promise.resolve().then(function () { return updateAmountPaid$1; });
-const _lazy_83ejRv = () => Promise.resolve().then(function () { return realtimeAnalytics_post$1; });
-const _lazy_GAJLNo = () => Promise.resolve().then(function () { return _itemId__delete$1; });
-const _lazy_DYNror = () => Promise.resolve().then(function () { return _category__get$1; });
-const _lazy_gwMElM = () => Promise.resolve().then(function () { return _category__post$1; });
-const _lazy_JO9MtX = () => Promise.resolve().then(function () { return _id__get; });
-const _lazy_8dgyJZ = () => Promise.resolve().then(function () { return index_post$5; });
-const _lazy_gp91XR = () => Promise.resolve().then(function () { return index_put$3; });
-const _lazy_FOAGzC = () => Promise.resolve().then(function () { return _id__put$1; });
-const _lazy_rZ4riQ = () => Promise.resolve().then(function () { return index_get$3; });
-const _lazy_698Fxc = () => Promise.resolve().then(function () { return index_put$1; });
-const _lazy_QHFBE8 = () => Promise.resolve().then(function () { return index_post$3; });
-const _lazy_CEuXsr = () => Promise.resolve().then(function () { return orderWebhook_post$1; });
-const _lazy_tJbX9w = () => Promise.resolve().then(function () { return paymentIntent_post$1; });
-const _lazy_YAD2O5 = () => Promise.resolve().then(function () { return storeOrder_post$1; });
-const _lazy_FkliaJ = () => Promise.resolve().then(function () { return webhook_post$1; });
-const _lazy_3kDO9d = () => Promise.resolve().then(function () { return access_get$1; });
-const _lazy_PQN2V8 = () => Promise.resolve().then(function () { return index_delete$1; });
-const _lazy_8ER98V = () => Promise.resolve().then(function () { return index_get$1; });
-const _lazy_l1uUzu = () => Promise.resolve().then(function () { return index_post$1; });
-const _lazy_iH1QuY = () => Promise.resolve().then(function () { return role_put$1; });
-const _lazy_aR4IWV = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_NxNy0j = () => Promise.resolve().then(function () { return analytics_post$1; });
+const _lazy_De2xyi = () => Promise.resolve().then(function () { return _id__delete$3; });
+const _lazy_MXTA2r = () => Promise.resolve().then(function () { return index_get$7; });
+const _lazy_iUCZ4j = () => Promise.resolve().then(function () { return index_post$h; });
+const _lazy_w2nmbp = () => Promise.resolve().then(function () { return status_put$3; });
+const _lazy_wykwNa = () => Promise.resolve().then(function () { return documents_post$1; });
+const _lazy_t7svw2 = () => Promise.resolve().then(function () { return _id__get$3; });
+const _lazy_UNpX0F = () => Promise.resolve().then(function () { return message_post$1; });
+const _lazy_amiMBq = () => Promise.resolve().then(function () { return _id__get$1; });
+const _lazy_rSEgp7 = () => Promise.resolve().then(function () { return index_post$f; });
+const _lazy_BpKRJA = () => Promise.resolve().then(function () { return index_post$d; });
+const _lazy_bXJlqs = () => Promise.resolve().then(function () { return _uid__get$1; });
+const _lazy_aSqkwF = () => Promise.resolve().then(function () { return index_post$b; });
+const _lazy_olKlhe = () => Promise.resolve().then(function () { return read_put$1; });
+const _lazy_KWMEmZ = () => Promise.resolve().then(function () { return _orderId__delete$1; });
+const _lazy_mU0Xcq = () => Promise.resolve().then(function () { return index_post$9; });
+const _lazy_DkMzOL = () => Promise.resolve().then(function () { return resolveOrder_put$1; });
+const _lazy_A00C9D = () => Promise.resolve().then(function () { return index_get$5; });
+const _lazy_CXyXb4 = () => import('file:///app/dashboard/server/api/orders/index.post.js');
+const _lazy_yohW8h = () => import('file:///app/dashboard/server/api/orders/index.put.js');
+const _lazy_QfSgiO = () => Promise.resolve().then(function () { return index_post$7; });
+const _lazy_FMCj2x = () => Promise.resolve().then(function () { return _id__delete$1; });
+const _lazy_lxxxnB = () => Promise.resolve().then(function () { return ids_get$1; });
+const _lazy_Csw2Sc = () => Promise.resolve().then(function () { return index_get$3; });
+const _lazy_Bkvq3e = () => Promise.resolve().then(function () { return index_post$5; });
+const _lazy_Hpdz4P = () => Promise.resolve().then(function () { return index_put$1; });
+const _lazy_NyOyjU = () => Promise.resolve().then(function () { return status_put$1; });
+const _lazy_71OjcR = () => Promise.resolve().then(function () { return updateAmountPaid$1; });
+const _lazy_Habgm2 = () => Promise.resolve().then(function () { return realtimeAnalytics_post$1; });
+const _lazy_9Nl6aW = () => import('file:///app/dashboard/server/api/store/%5BitemId%5D.delete.js');
+const _lazy_isyPWQ = () => Promise.resolve().then(function () { return _category__get$1; });
+const _lazy_5PRYad = () => import('file:///app/dashboard/server/api/store/categories/%5Bcategory%5D.post.js');
+const _lazy_gScKBy = () => import('file:///app/dashboard/server/api/store/categories/%5Bcategory%5D/products/%5Bid%5D.get.js');
+const _lazy_oqOzJT = () => import('file:///app/dashboard/server/api/store/categories/%5Bcategory%5D/products/index.post.js');
+const _lazy_w7LKha = () => import('file:///app/dashboard/server/api/store/categories/%5Bcategory%5D/products/index.put.js');
+const _lazy_lYF8iz = () => import('file:///app/dashboard/server/api/store/categories/%5Bcategory%5D/products/update/%5Bid%5D.put.js');
+const _lazy_g3t0Yw = () => import('file:///app/dashboard/server/api/store/index.get.js');
+const _lazy_Ud12a4 = () => import('file:///app/dashboard/server/api/store/index.put.js');
+const _lazy_gx3t76 = () => Promise.resolve().then(function () { return index_post$3; });
+const _lazy_Qk6Ud0 = () => Promise.resolve().then(function () { return orderWebhook_post$1; });
+const _lazy_fJQu4F = () => Promise.resolve().then(function () { return paymentIntent_post$1; });
+const _lazy_7Mc3Re = () => Promise.resolve().then(function () { return storeOrder_post$1; });
+const _lazy_p2XNmH = () => Promise.resolve().then(function () { return webhook_post$1; });
+const _lazy_wH7Ddz = () => Promise.resolve().then(function () { return access_get$1; });
+const _lazy_vhw7Mk = () => Promise.resolve().then(function () { return index_delete$1; });
+const _lazy_JfUw8w = () => Promise.resolve().then(function () { return index_get$1; });
+const _lazy_W8Llai = () => Promise.resolve().then(function () { return index_post$1; });
+const _lazy_kzuOnj = () => Promise.resolve().then(function () { return role_put$1; });
+const _lazy_7olyp3 = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/api/analytics', handler: _lazy_CrfynD, lazy: true, middleware: false, method: "post" },
-  { route: '/api/blogs/:id', handler: _lazy_k9Kqj3, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/blogs', handler: _lazy_0y7xgj, lazy: true, middleware: false, method: "get" },
-  { route: '/api/blogs', handler: _lazy_vTL4E1, lazy: true, middleware: false, method: "post" },
-  { route: '/api/blogs/status', handler: _lazy_YyQ9OT, lazy: true, middleware: false, method: "put" },
-  { route: '/api/chatrooms/documents', handler: _lazy_YDWNLR, lazy: true, middleware: false, method: "post" },
-  { route: '/api/chatrooms/documents/:id', handler: _lazy_Wf3SAz, lazy: true, middleware: false, method: "get" },
-  { route: '/api/chatrooms/message', handler: _lazy_QdlGBB, lazy: true, middleware: false, method: "post" },
-  { route: '/api/chatrooms/messages/:id', handler: _lazy_AWoeU9, lazy: true, middleware: false, method: "get" },
-  { route: '/api/emails', handler: _lazy_mUd2cx, lazy: true, middleware: false, method: "post" },
-  { route: '/api/galleries', handler: _lazy_ecBJyb, lazy: true, middleware: false, method: "post" },
-  { route: '/api/notifications/:uid', handler: _lazy_EOjQZF, lazy: true, middleware: false, method: "get" },
-  { route: '/api/notifications', handler: _lazy_tdIALH, lazy: true, middleware: false, method: "post" },
-  { route: '/api/notifications/read', handler: _lazy_J0N2JV, lazy: true, middleware: false, method: "put" },
-  { route: '/api/orders/incomplete/:orderId', handler: _lazy_JLqNEr, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/orders/incomplete', handler: _lazy_ICGbPV, lazy: true, middleware: false, method: "post" },
-  { route: '/api/orders/incomplete/resolve-order', handler: _lazy_XKMiBZ, lazy: true, middleware: false, method: "put" },
-  { route: '/api/orders', handler: _lazy_rhWvCJ, lazy: true, middleware: false, method: "get" },
-  { route: '/api/orders', handler: _lazy_skmEC5, lazy: true, middleware: false, method: "post" },
-  { route: '/api/orders', handler: _lazy_omlrXN, lazy: true, middleware: false, method: "put" },
-  { route: '/api/payments', handler: _lazy_q9NNUV, lazy: true, middleware: false, method: "post" },
-  { route: '/api/projects/:id', handler: _lazy_qPohQ8, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/projects/ids', handler: _lazy_ofJHrt, lazy: true, middleware: false, method: "get" },
-  { route: '/api/projects', handler: _lazy_YK9nru, lazy: true, middleware: false, method: "get" },
-  { route: '/api/projects', handler: _lazy_L36KtR, lazy: true, middleware: false, method: "post" },
-  { route: '/api/projects', handler: _lazy_SNBWAa, lazy: true, middleware: false, method: "put" },
-  { route: '/api/projects/status', handler: _lazy_xrOs3v, lazy: true, middleware: false, method: "put" },
-  { route: '/api/projects/update-amount-paid', handler: _lazy_LeW7MR, lazy: true, middleware: false, method: undefined },
-  { route: '/api/realtimeAnalytics', handler: _lazy_83ejRv, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/:itemId', handler: _lazy_GAJLNo, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/store/categories/:category', handler: _lazy_DYNror, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store/categories/:category', handler: _lazy_gwMElM, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/categories/:category/products/:id', handler: _lazy_JO9MtX, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store/categories/:category/products', handler: _lazy_8dgyJZ, lazy: true, middleware: false, method: "post" },
-  { route: '/api/store/categories/:category/products', handler: _lazy_gp91XR, lazy: true, middleware: false, method: "put" },
-  { route: '/api/store/categories/:category/products/update/:id', handler: _lazy_FOAGzC, lazy: true, middleware: false, method: "put" },
-  { route: '/api/store', handler: _lazy_rZ4riQ, lazy: true, middleware: false, method: "get" },
-  { route: '/api/store', handler: _lazy_698Fxc, lazy: true, middleware: false, method: "put" },
-  { route: '/api/stripe', handler: _lazy_QHFBE8, lazy: true, middleware: false, method: "post" },
-  { route: '/api/stripe/orderWebhook', handler: _lazy_CEuXsr, lazy: true, middleware: false, method: "post" },
-  { route: '/api/stripe/payment-intent', handler: _lazy_tJbX9w, lazy: true, middleware: false, method: "post" },
-  { route: '/api/stripe/storeOrder', handler: _lazy_YAD2O5, lazy: true, middleware: false, method: "post" },
-  { route: '/api/stripe/webhook', handler: _lazy_FkliaJ, lazy: true, middleware: false, method: "post" },
-  { route: '/api/users/access', handler: _lazy_3kDO9d, lazy: true, middleware: false, method: "get" },
-  { route: '/api/users', handler: _lazy_PQN2V8, lazy: true, middleware: false, method: "delete" },
-  { route: '/api/users', handler: _lazy_8ER98V, lazy: true, middleware: false, method: "get" },
-  { route: '/api/users', handler: _lazy_l1uUzu, lazy: true, middleware: false, method: "post" },
-  { route: '/api/users/role', handler: _lazy_iH1QuY, lazy: true, middleware: false, method: "put" },
-  { route: '/__nuxt_error', handler: _lazy_aR4IWV, lazy: true, middleware: false, method: undefined },
-  { route: '/_fonts/**', handler: _lazy_aR4IWV, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_aR4IWV, lazy: true, middleware: false, method: undefined }
+  { route: '/api/analytics', handler: _lazy_NxNy0j, lazy: true, middleware: false, method: "post" },
+  { route: '/api/blogs/:id', handler: _lazy_De2xyi, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/blogs', handler: _lazy_MXTA2r, lazy: true, middleware: false, method: "get" },
+  { route: '/api/blogs', handler: _lazy_iUCZ4j, lazy: true, middleware: false, method: "post" },
+  { route: '/api/blogs/status', handler: _lazy_w2nmbp, lazy: true, middleware: false, method: "put" },
+  { route: '/api/chatrooms/documents', handler: _lazy_wykwNa, lazy: true, middleware: false, method: "post" },
+  { route: '/api/chatrooms/documents/:id', handler: _lazy_t7svw2, lazy: true, middleware: false, method: "get" },
+  { route: '/api/chatrooms/message', handler: _lazy_UNpX0F, lazy: true, middleware: false, method: "post" },
+  { route: '/api/chatrooms/messages/:id', handler: _lazy_amiMBq, lazy: true, middleware: false, method: "get" },
+  { route: '/api/emails', handler: _lazy_rSEgp7, lazy: true, middleware: false, method: "post" },
+  { route: '/api/galleries', handler: _lazy_BpKRJA, lazy: true, middleware: false, method: "post" },
+  { route: '/api/notifications/:uid', handler: _lazy_bXJlqs, lazy: true, middleware: false, method: "get" },
+  { route: '/api/notifications', handler: _lazy_aSqkwF, lazy: true, middleware: false, method: "post" },
+  { route: '/api/notifications/read', handler: _lazy_olKlhe, lazy: true, middleware: false, method: "put" },
+  { route: '/api/orders/incomplete/:orderId', handler: _lazy_KWMEmZ, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/orders/incomplete', handler: _lazy_mU0Xcq, lazy: true, middleware: false, method: "post" },
+  { route: '/api/orders/incomplete/resolve-order', handler: _lazy_DkMzOL, lazy: true, middleware: false, method: "put" },
+  { route: '/api/orders', handler: _lazy_A00C9D, lazy: true, middleware: false, method: "get" },
+  { route: '/api/orders', handler: _lazy_CXyXb4, lazy: true, middleware: false, method: "post" },
+  { route: '/api/orders', handler: _lazy_yohW8h, lazy: true, middleware: false, method: "put" },
+  { route: '/api/payments', handler: _lazy_QfSgiO, lazy: true, middleware: false, method: "post" },
+  { route: '/api/projects/:id', handler: _lazy_FMCj2x, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/projects/ids', handler: _lazy_lxxxnB, lazy: true, middleware: false, method: "get" },
+  { route: '/api/projects', handler: _lazy_Csw2Sc, lazy: true, middleware: false, method: "get" },
+  { route: '/api/projects', handler: _lazy_Bkvq3e, lazy: true, middleware: false, method: "post" },
+  { route: '/api/projects', handler: _lazy_Hpdz4P, lazy: true, middleware: false, method: "put" },
+  { route: '/api/projects/status', handler: _lazy_NyOyjU, lazy: true, middleware: false, method: "put" },
+  { route: '/api/projects/update-amount-paid', handler: _lazy_71OjcR, lazy: true, middleware: false, method: undefined },
+  { route: '/api/realtimeAnalytics', handler: _lazy_Habgm2, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/:itemId', handler: _lazy_9Nl6aW, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/store/categories/:category', handler: _lazy_isyPWQ, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store/categories/:category', handler: _lazy_5PRYad, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/categories/:category/products/:id', handler: _lazy_gScKBy, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store/categories/:category/products', handler: _lazy_oqOzJT, lazy: true, middleware: false, method: "post" },
+  { route: '/api/store/categories/:category/products', handler: _lazy_w7LKha, lazy: true, middleware: false, method: "put" },
+  { route: '/api/store/categories/:category/products/update/:id', handler: _lazy_lYF8iz, lazy: true, middleware: false, method: "put" },
+  { route: '/api/store', handler: _lazy_g3t0Yw, lazy: true, middleware: false, method: "get" },
+  { route: '/api/store', handler: _lazy_Ud12a4, lazy: true, middleware: false, method: "put" },
+  { route: '/api/stripe', handler: _lazy_gx3t76, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/orderWebhook', handler: _lazy_Qk6Ud0, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/payment-intent', handler: _lazy_fJQu4F, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/storeOrder', handler: _lazy_7Mc3Re, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/webhook', handler: _lazy_p2XNmH, lazy: true, middleware: false, method: "post" },
+  { route: '/api/users/access', handler: _lazy_wH7Ddz, lazy: true, middleware: false, method: "get" },
+  { route: '/api/users', handler: _lazy_vhw7Mk, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/users', handler: _lazy_JfUw8w, lazy: true, middleware: false, method: "get" },
+  { route: '/api/users', handler: _lazy_W8Llai, lazy: true, middleware: false, method: "post" },
+  { route: '/api/users/role', handler: _lazy_kzuOnj, lazy: true, middleware: false, method: "put" },
+  { route: '/__nuxt_error', handler: _lazy_7olyp3, lazy: true, middleware: false, method: undefined },
+  { route: '/_fonts/**', handler: _lazy_7olyp3, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_7olyp3, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -1273,7 +1279,7 @@ const _id__delete$3 = /*#__PURE__*/Object.freeze({
   default: _id__delete$2
 });
 
-const index_get$8 = eventHandler(async (event) => {
+const index_get$6 = eventHandler(async (event) => {
   const db = event.context.db;
   const colRef = collection(db, "blogs");
   const querySnapshot = await getDocs(colRef);
@@ -1306,12 +1312,12 @@ const index_get$8 = eventHandler(async (event) => {
   return blogsWithHtml;
 });
 
-const index_get$9 = /*#__PURE__*/Object.freeze({
+const index_get$7 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_get$8
+  default: index_get$6
 });
 
-const index_post$k = defineEventHandler(async (event) => {
+const index_post$g = defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { content, filename } = body;
   if (!filename || !filename.endsWith(".md")) {
@@ -1329,9 +1335,9 @@ const index_post$k = defineEventHandler(async (event) => {
   }
 });
 
-const index_post$l = /*#__PURE__*/Object.freeze({
+const index_post$h = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$k
+  default: index_post$g
 });
 
 const status_put$2 = eventHandler(async (event) => {
@@ -1375,7 +1381,7 @@ const documents_post$1 = /*#__PURE__*/Object.freeze({
   default: documents_post
 });
 
-const _id__get$3 = eventHandler(async (event) => {
+const _id__get$2 = eventHandler(async (event) => {
   var _a;
   const db = event.context.velorisDb;
   const id = (_a = event.context.params) == null ? void 0 : _a.id;
@@ -1395,9 +1401,9 @@ const _id__get$3 = eventHandler(async (event) => {
   }
 });
 
-const _id__get$4 = /*#__PURE__*/Object.freeze({
+const _id__get$3 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: _id__get$3
+  default: _id__get$2
 });
 
 const message_post = eventHandler(async (event) => {
@@ -1424,7 +1430,7 @@ const message_post$1 = /*#__PURE__*/Object.freeze({
   default: message_post
 });
 
-const _id__get$1 = eventHandler(async (event) => {
+const _id__get = eventHandler(async (event) => {
   var _a;
   const db = event.context.velorisDb;
   const id = (_a = event.context.params) == null ? void 0 : _a.id;
@@ -1445,9 +1451,9 @@ const _id__get$1 = eventHandler(async (event) => {
   }
 });
 
-const _id__get$2 = /*#__PURE__*/Object.freeze({
+const _id__get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: _id__get$1
+  default: _id__get
 });
 
 const transporter = nodemailer.createTransport({
@@ -1458,7 +1464,7 @@ const transporter = nodemailer.createTransport({
     pass: "ezcWNTbc7sz!WiG"
   }
 });
-const index_post$i = eventHandler(async (event) => {
+const index_post$e = eventHandler(async (event) => {
   const { email } = await readBody(event);
   email.from = "codypwakeford@gmail.com";
   try {
@@ -1468,19 +1474,19 @@ const index_post$i = eventHandler(async (event) => {
   }
 });
 
-const index_post$j = /*#__PURE__*/Object.freeze({
+const index_post$f = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$i
+  default: index_post$e
 });
 
-const index_post$g = eventHandler(async (event) => {
+const index_post$c = eventHandler(async (event) => {
   event.context.db;
   event.context.storage;
 });
 
-const index_post$h = /*#__PURE__*/Object.freeze({
+const index_post$d = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$g
+  default: index_post$c
 });
 
 const _uid__get = eventHandler(async (event) => {
@@ -1512,7 +1518,7 @@ const _uid__get$1 = /*#__PURE__*/Object.freeze({
   default: _uid__get
 });
 
-const index_post$e = defineEventHandler(async (event) => {
+const index_post$a = defineEventHandler(async (event) => {
   const db = event.context.db;
   const { notification } = await readBody(event);
   if (!notification)
@@ -1582,9 +1588,9 @@ function getStyle(notification) {
   return style;
 }
 
-const index_post$f = /*#__PURE__*/Object.freeze({
+const index_post$b = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$e
+  default: index_post$a
 });
 
 const read_put = eventHandler(async (event) => {
@@ -1630,7 +1636,7 @@ const _orderId__delete$1 = /*#__PURE__*/Object.freeze({
   default: _orderId__delete
 });
 
-const index_post$c = eventHandler(async (event) => {
+const index_post$8 = eventHandler(async (event) => {
   const db = event.context.db;
   const body = await readBody(event);
   const colRef = collection(db, "incomplete-orders");
@@ -1642,9 +1648,9 @@ const index_post$c = eventHandler(async (event) => {
   }
 });
 
-const index_post$d = /*#__PURE__*/Object.freeze({
+const index_post$9 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$c
+  default: index_post$8
 });
 
 const resolveOrder_put = eventHandler(async (event) => {
@@ -1697,7 +1703,7 @@ const resolveOrder_put$1 = /*#__PURE__*/Object.freeze({
   default: resolveOrder_put
 });
 
-const index_get$6 = eventHandler(async (event) => {
+const index_get$4 = eventHandler(async (event) => {
   try {
     const db = event.context.db;
     const ordersCol = collection(db, "orders");
@@ -1715,60 +1721,12 @@ const index_get$6 = eventHandler(async (event) => {
   }
 });
 
-const index_get$7 = /*#__PURE__*/Object.freeze({
+const index_get$5 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_get$6
+  default: index_get$4
 });
 
-const index_post$a = eventHandler(async (event) => {
-  const db = event.context.db;
-  const body = await readBody(event);
-  const colRef = collection(db, "orders");
-  try {
-    await addDoc(colRef, body);
-    console.log("Document successfully added!");
-  } catch (error) {
-    console.error("Error adding document: ", error);
-  }
-});
-
-const index_post$b = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: index_post$a
-});
-
-const index_put$6 = eventHandler(async (event) => {
-  const db = event.context.db;
-  const body = await readBody(event);
-  const { id, newStatus } = body;
-  if (!id || !newStatus) {
-    return {
-      status: 400,
-      body: "Missing docId or newStatus in the request body"
-    };
-  }
-  const docRef = doc(db, "orders", id);
-  try {
-    await updateDoc(docRef, { status: newStatus });
-    return {
-      status: 200,
-      body: "Document updated successfully"
-    };
-  } catch (error) {
-    console.error("Error updating document:", error);
-    return {
-      status: 500,
-      body: "Failed to update document"
-    };
-  }
-});
-
-const index_put$7 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: index_put$6
-});
-
-const index_post$8 = eventHandler(async (event) => {
+const index_post$6 = eventHandler(async (event) => {
   const db = event.context.db;
   const { paymentRecord } = await readBody(event);
   if (!paymentRecord) {
@@ -1785,9 +1743,9 @@ const index_post$8 = eventHandler(async (event) => {
   }
 });
 
-const index_post$9 = /*#__PURE__*/Object.freeze({
+const index_post$7 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$8
+  default: index_post$6
 });
 
 const _id__delete = eventHandler(async (event) => {
@@ -1826,7 +1784,7 @@ const ids_get$1 = /*#__PURE__*/Object.freeze({
   default: ids_get
 });
 
-const index_get$4 = eventHandler(async (event) => {
+const index_get$2 = eventHandler(async (event) => {
   const db = event.context.velorisDb;
   const colRef = collection(db, "projects");
   const snapshot = await getDocs(colRef);
@@ -1837,12 +1795,12 @@ const index_get$4 = eventHandler(async (event) => {
   return projectsArray || [];
 });
 
-const index_get$5 = /*#__PURE__*/Object.freeze({
+const index_get$3 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_get$4
+  default: index_get$2
 });
 
-const index_post$6 = eventHandler(async (event) => {
+const index_post$4 = eventHandler(async (event) => {
   const db = event.context.velorisDb;
   const { project } = await readBody(event);
   if (!project) {
@@ -1862,12 +1820,12 @@ const index_post$6 = eventHandler(async (event) => {
   }
 });
 
-const index_post$7 = /*#__PURE__*/Object.freeze({
+const index_post$5 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_post$6
+  default: index_post$4
 });
 
-const index_put$4 = eventHandler(async (event) => {
+const index_put = eventHandler(async (event) => {
   const db = event.context.velorisDb;
   const { id, key, value } = await readBody(event);
   const colRef = collection(db, "projects");
@@ -1882,9 +1840,9 @@ const index_put$4 = eventHandler(async (event) => {
   }
 });
 
-const index_put$5 = /*#__PURE__*/Object.freeze({
+const index_put$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: index_put$4
+  default: index_put
 });
 
 const status_put = eventHandler(async (event) => {
@@ -1958,27 +1916,6 @@ const realtimeAnalytics_post$1 = /*#__PURE__*/Object.freeze({
   default: realtimeAnalytics_post
 });
 
-const _itemId__delete = eventHandler(async (event) => {
-  const db = event.context.db;
-  const itemId = event.context.params.itemId;
-  if (!itemId) {
-    console.log("Item id is missing");
-  }
-  console.log(itemId);
-  const docRef = doc(db, "store/default/items", itemId);
-  try {
-    await deleteDoc(docRef);
-    console.log("success");
-  } catch (error) {
-    console.error("Error deleting document:", error);
-  }
-});
-
-const _itemId__delete$1 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: _itemId__delete
-});
-
 const _category__get = eventHandler(async (event) => {
   const db = event.context.db;
   const params = event.context.params || {};
@@ -1997,157 +1934,6 @@ const _category__get = eventHandler(async (event) => {
 const _category__get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   default: _category__get
-});
-
-const _category__post = eventHandler(async (event) => {
-  const db = event.context.db;
-  const category = event.context.params.category;
-  try {
-    const colRef = collection(db, "store");
-    const docRef = doc(colRef, category);
-    await setDoc(docRef, {});
-    const itemsCollectionRef = collection(docRef, "items");
-    await addDoc(itemsCollectionRef, {});
-    console.log("Category successfully added!");
-  } catch (error) {
-    console.error("Error adding document: ", error);
-  }
-});
-
-const _category__post$1 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: _category__post
-});
-
-const _id__get = /*#__PURE__*/Object.freeze({
-  __proto__: null
-});
-
-const index_post$4 = eventHandler(async (event) => {
-  const db = event.context.db;
-  const category = event.context.params.category;
-  const body = await readBody(event);
-  body["category"] = category;
-  const categoryDocRef = doc(db, `store`, category);
-  const itemsColRef = collection(categoryDocRef, "items");
-  try {
-    await addDoc(itemsColRef, body);
-    console.log("Document successfully added!");
-  } catch (error) {
-    console.error("Error adding document: ", error);
-  }
-});
-
-const index_post$5 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: index_post$4
-});
-
-const index_put$2 = eventHandler(async (event) => {
-  const body = await readBody(event);
-  const docId = body.id;
-  const category = event.context.params.category;
-  const { id, ...newDocData } = body;
-  const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
-    projectId: process.env.FIREBASE_PROJECT_ID
-  };
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  if (!docId)
-    console.log("No docId!");
-  const docRef = doc(db, `store/${category}/items`, docId);
-  console.log("Updating", docId);
-  try {
-    await setDoc(docRef, newDocData);
-    console.log("Updated");
-  } catch (error) {
-    console.error("Error replacing document:", error);
-  }
-});
-
-const index_put$3 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: index_put$2
-});
-
-const _id__put = eventHandler(async (event) => {
-  const category = event.context.params.category;
-  const docId = event.context.params.id;
-  const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
-    projectId: process.env.FIREBASE_PROJECT_ID
-  };
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  if (!docId)
-    console.log("No docId!");
-  const docRef = doc(db, `store/${category}/items`, docId);
-  try {
-    await updateDoc(docRef, { visibility: "sold" });
-    console.log("Updated item to ");
-  } catch (error) {
-    console.error("Error replacing document:", error);
-  }
-});
-
-const _id__put$1 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: _id__put
-});
-
-const index_get$2 = eventHandler(async (event) => {
-  const db = event.context.db;
-  const itemsColGroupRef = collectionGroup(db, "items");
-  const querySnapshot = await getDocs(itemsColGroupRef);
-  const categories = {};
-  querySnapshot.docs.forEach((doc) => {
-    const category = doc.ref.parent.parent.id;
-    const item = {
-      id: doc.id,
-      ...doc.data()
-    };
-    if (!categories[category]) {
-      categories[category] = [];
-    }
-    categories[category].push(item);
-  });
-  return categories;
-});
-
-const index_get$3 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: index_get$2
-});
-
-const index_put = eventHandler(async (event) => {
-  const db = event.context.db;
-  const body = await readBody(event);
-  const docId = body.id;
-  const { id, ...newDocData } = body;
-  if (!docId)
-    console.log("No docId!");
-  const docRef = doc(db, "orders", docId);
-  console.log("Updating", docId);
-  try {
-    await setDoc(docRef, newDocData);
-    console.log("Updated");
-  } catch (error) {
-    console.error("Error replacing document:", error);
-  }
-});
-
-const index_put$1 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  default: index_put
 });
 
 const config$4 = useRuntimeConfig();

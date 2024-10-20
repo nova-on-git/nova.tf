@@ -1,7 +1,7 @@
 <template>
     <main>
         <mflex>
-            <h2>velorisdesigns.com</h2>
+            <h2>nova.tf</h2>
             <btn preset="dark" to="/admin">Dashboard</btn>
         </mflex>
     </main>

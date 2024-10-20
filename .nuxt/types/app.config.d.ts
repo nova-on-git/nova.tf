@@ -1,13 +1,14 @@
 
 import type { CustomAppConfig } from 'nuxt/schema'
 import type { Defu } from 'defu'
-import cfg0 from "../../node_modules/.c12/github_Veloris_Designs_TVJ2ivhTHC/app.config"
-import cfg1 from "../../node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config"
+import cfg0 from "../../node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config"
+import cfg1 from "../../../dashboard/app.config"
+import cfg2 from "../../../dashboard/node_modules/.c12/github_Veloris_Designs_aph2YalU4I/app.config"
 
 declare const inlineConfig = {
   "nuxt": {}
 }
-type ResolvedAppConfig = Defu<typeof inlineConfig, [typeof cfg0, typeof cfg1]>
+type ResolvedAppConfig = Defu<typeof inlineConfig, [typeof cfg0, typeof cfg1, typeof cfg2]>
 type IsAny<T> = 0 extends 1 & T ? true : false
 
 type MergedAppConfig<Resolved extends Record<string, unknown>, Custom extends Record<string, unknown>> = {
