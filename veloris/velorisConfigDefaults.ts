@@ -73,7 +73,7 @@ export default {
                             name: "My Projects",
                             url: "/admin/projects",
                             icon: "mdi:hammer-screwdriver",
-                            access: ["client"],
+                            access: ["client", "dev"],
                         },
                     ],
                 },
