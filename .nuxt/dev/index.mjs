@@ -593,9 +593,9 @@ function normalizeCookieHeaders(headers) {
   return outgoingHeaders;
 }
 
-const config$5 = useRuntimeConfig();
+const config$6 = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
-  createRouter({ routes: config$5.nitro.routeRules })
+  createRouter({ routes: config$6.nitro.routeRules })
 );
 function createRouteRulesHandler(ctx) {
   return eventHandler((event) => {
@@ -979,6 +979,7 @@ const _lazy_Ud12a4 = () => import('file:///app/dashboard/server/api/store/index.
 const _lazy_gx3t76 = () => Promise.resolve().then(function () { return index_post$3; });
 const _lazy_Qk6Ud0 = () => Promise.resolve().then(function () { return orderWebhook_post$1; });
 const _lazy_fJQu4F = () => Promise.resolve().then(function () { return paymentIntent_post$1; });
+const _lazy_kESJ1n = () => Promise.resolve().then(function () { return paymentMethod_post$1; });
 const _lazy_7Mc3Re = () => Promise.resolve().then(function () { return storeOrder_post$1; });
 const _lazy_p2XNmH = () => Promise.resolve().then(function () { return webhook_post$1; });
 const _lazy_wH7Ddz = () => Promise.resolve().then(function () { return access_get$1; });
@@ -1030,6 +1031,7 @@ const handlers = [
   { route: '/api/stripe', handler: _lazy_gx3t76, lazy: true, middleware: false, method: "post" },
   { route: '/api/stripe/orderWebhook', handler: _lazy_Qk6Ud0, lazy: true, middleware: false, method: "post" },
   { route: '/api/stripe/payment-intent', handler: _lazy_fJQu4F, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/paymentMethod', handler: _lazy_kESJ1n, lazy: true, middleware: false, method: "post" },
   { route: '/api/stripe/storeOrder', handler: _lazy_7Mc3Re, lazy: true, middleware: false, method: "post" },
   { route: '/api/stripe/webhook', handler: _lazy_p2XNmH, lazy: true, middleware: false, method: "post" },
   { route: '/api/users/access', handler: _lazy_wH7Ddz, lazy: true, middleware: false, method: "get" },
@@ -1936,14 +1938,14 @@ const _category__get$1 = /*#__PURE__*/Object.freeze({
   default: _category__get
 });
 
-const config$4 = useRuntimeConfig();
-const STRIPE_SECRET_KEY$1 = config$4.STRIPE_SECRET_KEY;
-const stripe$4 = new Stripe(STRIPE_SECRET_KEY$1);
+const config$5 = useRuntimeConfig();
+const STRIPE_SECRET_KEY$2 = config$5.STRIPE_SECRET_KEY;
+const stripe$5 = new Stripe(STRIPE_SECRET_KEY$2);
 const index_post$2 = eventHandler(async (event) => {
   const { paymentOptions } = await readBody(event);
   const origin = event.node.req.headers["origin"];
   try {
-    const session = await stripe$4.checkout.sessions.create({
+    const session = await stripe$5.checkout.sessions.create({
       ...paymentOptions,
       success_url: `${origin}/admin/dev?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}`
@@ -1959,9 +1961,9 @@ const index_post$3 = /*#__PURE__*/Object.freeze({
   default: index_post$2
 });
 
-const config$3 = useRuntimeConfig();
-const STRIPE_WEBHOOK_SECRET = config$3.STRIPE_WEBHOOK_SECRET;
-const stripe$3 = new Stripe(process.env.STRIPE_WEBHOOK_SECRET, {
+const config$4 = useRuntimeConfig();
+const STRIPE_WEBHOOK_SECRET = config$4.STRIPE_WEBHOOK_SECRET;
+const stripe$4 = new Stripe(process.env.STRIPE_WEBHOOK_SECRET, {
   apiVersion: "2024-06-20"
 });
 const orderWebhook_post = eventHandler(async (event) => {
@@ -1974,7 +1976,7 @@ const orderWebhook_post = eventHandler(async (event) => {
     return { error: "Missing signature or body" };
   }
   try {
-    stripeEvent = stripe$3.webhooks.constructEvent(
+    stripeEvent = stripe$4.webhooks.constructEvent(
       body,
       sig,
       STRIPE_WEBHOOK_SECRET
@@ -2018,13 +2020,13 @@ const orderWebhook_post$1 = /*#__PURE__*/Object.freeze({
   default: orderWebhook_post
 });
 
-const config$2 = useRuntimeConfig();
-const STRIPE_SECRET_KEY = config$2.STRIPE_SECRET_KEY;
-const stripe$2 = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+const config$3 = useRuntimeConfig();
+const STRIPE_SECRET_KEY$1 = config$3.STRIPE_SECRET_KEY;
+const stripe$3 = new Stripe(STRIPE_SECRET_KEY$1, { apiVersion: "2024-06-20" });
 const paymentIntent_post = eventHandler(async (event) => {
   const { paymentOptions } = await readBody(event);
   try {
-    const paymentIntent = await stripe$2.paymentIntents.create({
+    const paymentIntent = await stripe$3.paymentIntents.create({
       ...paymentOptions,
       payment_method_types: ["card"]
     });
@@ -2040,6 +2042,50 @@ const paymentIntent_post = eventHandler(async (event) => {
 const paymentIntent_post$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   default: paymentIntent_post
+});
+
+const config$2 = useRuntimeConfig();
+const STRIPE_SECRET_KEY = config$2.STRIPE_SECRET_KEY;
+const stripe$2 = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+const paymentMethod_post = defineEventHandler(async (event) => {
+  try {
+    const { paymentMethodId, customerEmail } = await readBody(event);
+    if (!paymentMethodId || !customerEmail) {
+      throw createError({ statusCode: 400, statusMessage: "Missing required parameters." });
+    }
+    let customer;
+    const existingCustomers = await stripe$2.customers.list({
+      email: customerEmail,
+      limit: 1
+    });
+    if (existingCustomers.data.length > 0) {
+      customer = existingCustomers.data[0];
+    } else {
+      customer = await stripe$2.customers.create({
+        email: customerEmail
+      });
+    }
+    await stripe$2.paymentMethods.attach(paymentMethodId, {
+      customer: customer.id
+    });
+    await stripe$2.customers.update(customer.id, {
+      invoice_settings: {
+        default_payment_method: paymentMethodId
+      }
+    });
+    return { success: true, message: "Payment method saved successfully!" };
+  } catch (error) {
+    console.error("Error saving payment method:", error);
+    return {
+      success: false,
+      error: error.message || "An error occurred while saving the payment method."
+    };
+  }
+});
+
+const paymentMethod_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: paymentMethod_post
 });
 
 const config$1 = useRuntimeConfig();
