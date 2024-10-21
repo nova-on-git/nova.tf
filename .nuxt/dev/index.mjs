@@ -593,9 +593,9 @@ function normalizeCookieHeaders(headers) {
   return outgoingHeaders;
 }
 
-const config$6 = useRuntimeConfig();
+const config$7 = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
-  createRouter({ routes: config$6.nitro.routeRules })
+  createRouter({ routes: config$7.nitro.routeRules })
 );
 function createRouteRulesHandler(ctx) {
   return eventHandler((event) => {
@@ -662,7 +662,7 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _ZEHZXRmqhM = (function(nitro) {
+const _d2tgfFRBAs = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
@@ -873,7 +873,7 @@ const _9OsEmrLA18 = defineNitroPlugin(async (nitroApp) => {
 });
 
 const plugins = [
-  _ZEHZXRmqhM,
+  _d2tgfFRBAs,
 _YF2BBAjZDf,
 _9OsEmrLA18
 ];
@@ -960,6 +960,7 @@ const _lazy_CXyXb4 = () => import('file:///app/dashboard/server/api/orders/index
 const _lazy_yohW8h = () => import('file:///app/dashboard/server/api/orders/index.put.js');
 const _lazy_QfSgiO = () => Promise.resolve().then(function () { return index_post$7; });
 const _lazy_FMCj2x = () => Promise.resolve().then(function () { return _id__delete$1; });
+const _lazy_kSuTx3 = () => Promise.resolve().then(function () { return document_post$1; });
 const _lazy_lxxxnB = () => Promise.resolve().then(function () { return ids_get$1; });
 const _lazy_Csw2Sc = () => Promise.resolve().then(function () { return index_get$3; });
 const _lazy_Bkvq3e = () => Promise.resolve().then(function () { return index_post$5; });
@@ -979,7 +980,8 @@ const _lazy_Ud12a4 = () => import('file:///app/dashboard/server/api/store/index.
 const _lazy_gx3t76 = () => Promise.resolve().then(function () { return index_post$3; });
 const _lazy_Qk6Ud0 = () => Promise.resolve().then(function () { return orderWebhook_post$1; });
 const _lazy_fJQu4F = () => Promise.resolve().then(function () { return paymentIntent_post$1; });
-const _lazy_kESJ1n = () => Promise.resolve().then(function () { return paymentMethod_post$1; });
+const _lazy_UNvwtd = () => Promise.resolve().then(function () { return paymentMethods_get$1; });
+const _lazy_vJ514t = () => Promise.resolve().then(function () { return setupIntent$1; });
 const _lazy_7Mc3Re = () => Promise.resolve().then(function () { return storeOrder_post$1; });
 const _lazy_p2XNmH = () => Promise.resolve().then(function () { return webhook_post$1; });
 const _lazy_wH7Ddz = () => Promise.resolve().then(function () { return access_get$1; });
@@ -1012,6 +1014,7 @@ const handlers = [
   { route: '/api/orders', handler: _lazy_yohW8h, lazy: true, middleware: false, method: "put" },
   { route: '/api/payments', handler: _lazy_QfSgiO, lazy: true, middleware: false, method: "post" },
   { route: '/api/projects/:id', handler: _lazy_FMCj2x, lazy: true, middleware: false, method: "delete" },
+  { route: '/api/projects/document', handler: _lazy_kSuTx3, lazy: true, middleware: false, method: "post" },
   { route: '/api/projects/ids', handler: _lazy_lxxxnB, lazy: true, middleware: false, method: "get" },
   { route: '/api/projects', handler: _lazy_Csw2Sc, lazy: true, middleware: false, method: "get" },
   { route: '/api/projects', handler: _lazy_Bkvq3e, lazy: true, middleware: false, method: "post" },
@@ -1031,7 +1034,8 @@ const handlers = [
   { route: '/api/stripe', handler: _lazy_gx3t76, lazy: true, middleware: false, method: "post" },
   { route: '/api/stripe/orderWebhook', handler: _lazy_Qk6Ud0, lazy: true, middleware: false, method: "post" },
   { route: '/api/stripe/payment-intent', handler: _lazy_fJQu4F, lazy: true, middleware: false, method: "post" },
-  { route: '/api/stripe/paymentMethod', handler: _lazy_kESJ1n, lazy: true, middleware: false, method: "post" },
+  { route: '/api/stripe/payment-methods', handler: _lazy_UNvwtd, lazy: true, middleware: false, method: "get" },
+  { route: '/api/stripe/setup-intent', handler: _lazy_vJ514t, lazy: true, middleware: false, method: undefined },
   { route: '/api/stripe/storeOrder', handler: _lazy_7Mc3Re, lazy: true, middleware: false, method: "post" },
   { route: '/api/stripe/webhook', handler: _lazy_p2XNmH, lazy: true, middleware: false, method: "post" },
   { route: '/api/users/access', handler: _lazy_wH7Ddz, lazy: true, middleware: false, method: "get" },
@@ -1773,6 +1777,33 @@ const _id__delete$1 = /*#__PURE__*/Object.freeze({
   default: _id__delete
 });
 
+const document_post = eventHandler(async (event) => {
+  const db = event.context.db;
+  const { id, document } = await readBody(event);
+  if (!id || !document) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "/api/projects/document is missing either id or document permameters."
+    });
+  }
+  const colRef = collection(db, "projects");
+  const docRef = doc(colRef, id);
+  const documentsColRef = collection(docRef, "project-documents");
+  try {
+    await addDoc(documentsColRef, document);
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: `An error occured while adding a document to the project: ${error}`
+    });
+  }
+});
+
+const document_post$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: document_post
+});
+
 const ids_get = eventHandler(async (event) => {
   const db = event.context.velorisDb;
   const colRef = collection(db, "projects");
@@ -1938,14 +1969,14 @@ const _category__get$1 = /*#__PURE__*/Object.freeze({
   default: _category__get
 });
 
-const config$5 = useRuntimeConfig();
-const STRIPE_SECRET_KEY$2 = config$5.STRIPE_SECRET_KEY;
-const stripe$5 = new Stripe(STRIPE_SECRET_KEY$2);
+const config$6 = useRuntimeConfig();
+const STRIPE_SECRET_KEY$3 = config$6.STRIPE_SECRET_KEY;
+const stripe$6 = new Stripe(STRIPE_SECRET_KEY$3);
 const index_post$2 = eventHandler(async (event) => {
   const { paymentOptions } = await readBody(event);
   const origin = event.node.req.headers["origin"];
   try {
-    const session = await stripe$5.checkout.sessions.create({
+    const session = await stripe$6.checkout.sessions.create({
       ...paymentOptions,
       success_url: `${origin}/admin/dev?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}`
@@ -1961,9 +1992,9 @@ const index_post$3 = /*#__PURE__*/Object.freeze({
   default: index_post$2
 });
 
-const config$4 = useRuntimeConfig();
-const STRIPE_WEBHOOK_SECRET = config$4.STRIPE_WEBHOOK_SECRET;
-const stripe$4 = new Stripe(process.env.STRIPE_WEBHOOK_SECRET, {
+const config$5 = useRuntimeConfig();
+const STRIPE_WEBHOOK_SECRET = config$5.STRIPE_WEBHOOK_SECRET;
+const stripe$5 = new Stripe(process.env.STRIPE_WEBHOOK_SECRET, {
   apiVersion: "2024-06-20"
 });
 const orderWebhook_post = eventHandler(async (event) => {
@@ -1976,7 +2007,7 @@ const orderWebhook_post = eventHandler(async (event) => {
     return { error: "Missing signature or body" };
   }
   try {
-    stripeEvent = stripe$4.webhooks.constructEvent(
+    stripeEvent = stripe$5.webhooks.constructEvent(
       body,
       sig,
       STRIPE_WEBHOOK_SECRET
@@ -2020,13 +2051,13 @@ const orderWebhook_post$1 = /*#__PURE__*/Object.freeze({
   default: orderWebhook_post
 });
 
-const config$3 = useRuntimeConfig();
-const STRIPE_SECRET_KEY$1 = config$3.STRIPE_SECRET_KEY;
-const stripe$3 = new Stripe(STRIPE_SECRET_KEY$1, { apiVersion: "2024-06-20" });
+const config$4 = useRuntimeConfig();
+const STRIPE_SECRET_KEY$2 = config$4.STRIPE_SECRET_KEY;
+const stripe$4 = new Stripe(STRIPE_SECRET_KEY$2, { apiVersion: "2024-06-20" });
 const paymentIntent_post = eventHandler(async (event) => {
   const { paymentOptions } = await readBody(event);
   try {
-    const paymentIntent = await stripe$3.paymentIntents.create({
+    const paymentIntent = await stripe$4.paymentIntents.create({
       ...paymentOptions,
       payment_method_types: ["card"]
     });
@@ -2044,48 +2075,60 @@ const paymentIntent_post$1 = /*#__PURE__*/Object.freeze({
   default: paymentIntent_post
 });
 
-const config$2 = useRuntimeConfig();
-const STRIPE_SECRET_KEY = config$2.STRIPE_SECRET_KEY;
-const stripe$2 = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
-const paymentMethod_post = defineEventHandler(async (event) => {
-  try {
-    const { paymentMethodId, customerEmail } = await readBody(event);
-    if (!paymentMethodId || !customerEmail) {
-      throw createError({ statusCode: 400, statusMessage: "Missing required parameters." });
-    }
-    let customer;
-    const existingCustomers = await stripe$2.customers.list({
-      email: customerEmail,
-      limit: 1
-    });
-    if (existingCustomers.data.length > 0) {
-      customer = existingCustomers.data[0];
-    } else {
-      customer = await stripe$2.customers.create({
-        email: customerEmail
-      });
-    }
-    await stripe$2.paymentMethods.attach(paymentMethodId, {
-      customer: customer.id
-    });
-    await stripe$2.customers.update(customer.id, {
-      invoice_settings: {
-        default_payment_method: paymentMethodId
-      }
-    });
-    return { success: true, message: "Payment method saved successfully!" };
-  } catch (error) {
-    console.error("Error saving payment method:", error);
+const config$3 = useRuntimeConfig();
+const STRIPE_SECRET_KEY$1 = config$3.STRIPE_SECRET_KEY;
+const stripe$3 = new Stripe(STRIPE_SECRET_KEY$1, { apiVersion: "2024-06-20" });
+const paymentMethods_get = defineEventHandler(async (event) => {
+  const query = getQuery$1(event);
+  const customerId = query.customerId;
+  if (!customerId) {
     return {
-      success: false,
-      error: error.message || "An error occurred while saving the payment method."
+      status: 400,
+      message: "Customer ID is required"
+    };
+  }
+  try {
+    const paymentMethods = await stripe$3.paymentMethods.list({
+      customer: customerId,
+      type: "card"
+      // Specify the payment method type (e.g., 'card')
+    });
+    return paymentMethods.data;
+  } catch (error) {
+    console.error("Error fetching payment methods:", error);
+    return {
+      status: 500,
+      message: "Failed to fetch payment methods"
     };
   }
 });
 
-const paymentMethod_post$1 = /*#__PURE__*/Object.freeze({
+const paymentMethods_get$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  default: paymentMethod_post
+  default: paymentMethods_get
+});
+
+const config$2 = useRuntimeConfig();
+const STRIPE_SECRET_KEY = config$2.STRIPE_SECRET_KEY;
+const stripe$2 = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+const setupIntent = defineEventHandler(async (event) => {
+  try {
+    const setupIntent = await stripe$2.setupIntents.create({
+      payment_method_types: ["card"]
+    });
+    return { clientSecret: setupIntent.client_secret };
+  } catch (error) {
+    console.error("Error creating Setup Intent:", error);
+    return {
+      status: 500,
+      message: "Failed to create Setup Intent"
+    };
+  }
+});
+
+const setupIntent$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: setupIntent
 });
 
 const config$1 = useRuntimeConfig();
