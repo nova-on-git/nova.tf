@@ -18,8 +18,9 @@ pnpm-lock.yaml
 .fleet
 .idea
 
+
 # Local env files
-.env.*
-!.env.example
+# .env.* # PRIVATE REPO #
+# !.env.example
 
 # nuxt.config.ts

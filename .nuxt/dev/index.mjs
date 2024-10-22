@@ -7,7 +7,7 @@ import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, cr
 import { BetaAnalyticsDataClient } from 'file:///app/dashboard/node_modules/.pnpm/@google-analytics+data@4.8.0/node_modules/@google-analytics/data/build/src/index.js';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, where, getDoc, setDoc } from 'file:///app/dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
+import { getFirestore, collection, doc, deleteDoc, getDocs, updateDoc, serverTimestamp, addDoc, query, orderBy, where, getDoc, arrayUnion, setDoc } from 'file:///app/dashboard/node_modules/.pnpm/firebase@10.14.0/node_modules/firebase/firestore/dist/index.mjs';
 import axios from 'file:///app/dashboard/node_modules/.pnpm/axios@1.7.7/node_modules/axios/index.js';
 import { promises } from 'fs';
 import nodemailer from 'file:///app/dashboard/node_modules/.pnpm/nodemailer@6.9.15/node_modules/nodemailer/lib/nodemailer.js';
@@ -140,6 +140,7 @@ const _inlineRuntimeConfig = {
   },
   "public": {
     "GOOGLE_ANALYTICS_TAG_ID": "G-64DN14HE5K",
+    "CALENDLY_PAT": "eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNzI5NTkxMTExLCJqdGkiOiI3YTM2NDFkOC0wZGE5LTQ4ZDctYTRkMy02N2QxM2IzODE3NzUiLCJ1c2VyX3V1aWQiOiI5ZmMzMGM2OC0zMDBkLTQzMTEtOTg1MS03Y2NiMDg4Y2NjYjEifQ._YCkuRGT0G766A5YUr4g58sJVeDUdLPWQBLuww12werGi0OodrbatlNc9m7TunMekePtBBuze3bahPNzzRW4HA",
     "FIREBASE_API_KEY": "AIzaSyBcZJQxgWVm49vNvXV7DWg509c_Qxntx3k",
     "FIREBASE_AUTH_DOMAIN": "veloris-cms.firebaseapp.com",
     "FIREBASE_STORAGE_BUCKET": "veloris-cms.appspot.com",
@@ -961,6 +962,7 @@ const _lazy_yohW8h = () => import('file:///app/dashboard/server/api/orders/index
 const _lazy_QfSgiO = () => Promise.resolve().then(function () { return index_post$7; });
 const _lazy_FMCj2x = () => Promise.resolve().then(function () { return _id__delete$1; });
 const _lazy_kSuTx3 = () => Promise.resolve().then(function () { return document_post$1; });
+const _lazy_zrfvHQ = () => Promise.resolve().then(function () { return documents_get$1; });
 const _lazy_lxxxnB = () => Promise.resolve().then(function () { return ids_get$1; });
 const _lazy_Csw2Sc = () => Promise.resolve().then(function () { return index_get$3; });
 const _lazy_Bkvq3e = () => Promise.resolve().then(function () { return index_post$5; });
@@ -1015,6 +1017,7 @@ const handlers = [
   { route: '/api/payments', handler: _lazy_QfSgiO, lazy: true, middleware: false, method: "post" },
   { route: '/api/projects/:id', handler: _lazy_FMCj2x, lazy: true, middleware: false, method: "delete" },
   { route: '/api/projects/document', handler: _lazy_kSuTx3, lazy: true, middleware: false, method: "post" },
+  { route: '/api/projects/documents', handler: _lazy_zrfvHQ, lazy: true, middleware: false, method: "get" },
   { route: '/api/projects/ids', handler: _lazy_lxxxnB, lazy: true, middleware: false, method: "get" },
   { route: '/api/projects', handler: _lazy_Csw2Sc, lazy: true, middleware: false, method: "get" },
   { route: '/api/projects', handler: _lazy_Bkvq3e, lazy: true, middleware: false, method: "post" },
@@ -1778,7 +1781,7 @@ const _id__delete$1 = /*#__PURE__*/Object.freeze({
 });
 
 const document_post = eventHandler(async (event) => {
-  const db = event.context.db;
+  const db = event.context.velorisDb;
   const { id, document } = await readBody(event);
   if (!id || !document) {
     throw createError({
@@ -1788,9 +1791,10 @@ const document_post = eventHandler(async (event) => {
   }
   const colRef = collection(db, "projects");
   const docRef = doc(colRef, id);
-  const documentsColRef = collection(docRef, "project-documents");
   try {
-    await addDoc(documentsColRef, document);
+    await updateDoc(docRef, {
+      documents: arrayUnion(document)
+    });
   } catch (error) {
     throw createError({
       statusCode: 500,
@@ -1802,6 +1806,39 @@ const document_post = eventHandler(async (event) => {
 const document_post$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   default: document_post
+});
+
+const documents_get = eventHandler(async (event) => {
+  const db = event.context.velorisDb;
+  const { id, document } = await readBody(event);
+  if (!id || !document) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "/api/projects/document is missing either id or document permameters."
+    });
+  }
+  const colRef = collection(db, "projects");
+  const docRef = doc(colRef, id);
+  const documentsColRef = collection(docRef, "project-documents");
+  try {
+    const snapshot = await getDocs(documentsColRef);
+    return snapshot.docs.map((doc2) => {
+      return {
+        id: doc2.id,
+        ...doc2.data()
+      };
+    });
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: `An error occured while adding a document to the project: ${error}`
+    });
+  }
+});
+
+const documents_get$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: documents_get
 });
 
 const ids_get = eventHandler(async (event) => {

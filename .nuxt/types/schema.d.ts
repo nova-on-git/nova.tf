@@ -126,6 +126,8 @@ declare module 'nuxt/schema' {
   interface PublicRuntimeConfig {
    GOOGLE_ANALYTICS_TAG_ID: string,
 
+   CALENDLY_PAT: string,
+
    FIREBASE_API_KEY: string,
 
    FIREBASE_AUTH_DOMAIN: string,

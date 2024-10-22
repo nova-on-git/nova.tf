@@ -8,9 +8,6 @@ export default defineNuxtConfig({
         ["../dashboard", { install: true }], // used for dev
     ],
 
-    postcss: { plugins: { tailwindcss: {}, autoprefixer: {} } },
-
-    // css: ["~/assets/css/main.css"],
     app: { pageTransition: { name: "page" } },
 
     modules: ["@nuxt/fonts", "@pinia/nuxt", "nuxt-build-cache"],
@@ -22,6 +19,7 @@ export default defineNuxtConfig({
 
         public: {
             GOOGLE_ANALYTICS_TAG_ID: process.env.GOOGLE_ANALYTICS_TAG_ID,
+            CALENDLY_PAT: process.env.CALENDLY_PAT,
             FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
             FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
             FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
@@ -31,7 +29,6 @@ export default defineNuxtConfig({
             FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
         },
     },
-
     compatibilityDate: "2024-04-03",
     devtools: { enabled: true },
 })
